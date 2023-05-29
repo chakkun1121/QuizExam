@@ -8,7 +8,7 @@ export interface FileInfoType {
   savedPlace: string;
 }
 export default function Files() {
-  const filesInfo = JSON.parse(localStorage.getItem("filesInfo")) || [];
+  const filesInfo = JSON.parse(localStorage.getItem("filesInfo") || "") || [];
   return (
     <section>
       <h2>ファイル一覧</h2>
