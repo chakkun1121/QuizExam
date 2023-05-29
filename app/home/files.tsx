@@ -8,6 +8,7 @@ export interface FileInfoType {
   savedPlace: string;
 }
 export default function Files() {
+  if (typeof window === "undefined") return <></>;
   const filesInfo = JSON.parse(localStorage.getItem("filesInfo") || "") || [];
   return (
     <section>
