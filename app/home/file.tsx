@@ -1,8 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { FileInfoType } from "./files";
 import Link from "next/link";
+
+export interface FileInfoType {
+  fileID: string;
+  fileName: string;
+  createdData: string;
+  lastEditedData: string;
+  savedPlace: string;
+}
 
 export default function File({ fileInfo }: { fileInfo: FileInfoType }) {
   console.log(fileInfo);

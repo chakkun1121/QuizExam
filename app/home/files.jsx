@@ -1,21 +1,15 @@
 "use client";
 import File from "./file";
-export interface FileInfoType {
-  fileID: string;
-  fileName: string;
-  createdData: string;
-  lastEditedData: string;
-  savedPlace: string;
-}
+import { useFilesInfo } from "./getFile";
+
 export default function Files() {
-  if (typeof window === "undefined") return <></>;
-  const filesInfo = JSON.parse(localStorage.getItem("filesInfo") || "") || [];
+  const filesInfo = useFilesInfo();
   return (
     <section>
       <h2>ファイル一覧</h2>
       <div className="">
         {filesInfo ? (
-          filesInfo.map((fileInfo: FileInfoType) => {
+          filesInfo.map((fileInfo) => {
             return <File fileInfo={fileInfo} />;
           })
         ) : (
