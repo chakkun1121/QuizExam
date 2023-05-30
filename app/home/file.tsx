@@ -13,44 +13,29 @@ export interface FileInfoType {
 
 export default function File({ fileInfo }: { fileInfo: FileInfoType }) {
   console.log(fileInfo);
+  const savedPlaceJapanese = (() => {
+    switch (fileInfo.savedPlace) {
+      case "local":
+        return "ローカル";
+      case "cloud":
+        return "クラウド";
+      case "GoogleDrive":
+        return "GoogleDrive";
+    }
+  })();
   return (
     <div className="flex-none bg-blue-400 m-1">
       <div className="flex">
         <div className="flex-none">
-          {(() => {
-            switch (fileInfo.savedPlace) {
-              case "local":
-                return (
-                  <Image
-                    width={32}
-                    height={32}
-                    src="/local.png"
-                    alt="ローカルファイル"
-                  />
-                );
-              case "server":
-                return (
-                  <Image
-                    width={32}
-                    height={32}
-                    src="/server.png"
-                    alt="サーバーファイル"
-                  />
-                );
-              case "googleDrive":
-                return (
-                  <Image
-                    width={32}
-                    height={32}
-                    src="/googleDrive.png"
-                    alt="GoogleDriveファイル"
-                  />
-                );
-            }
-          })()}
+          <Image
+            width={48}
+            height={48}
+            src={`/${fileInfo.savedPlace}.png`}
+            alt={`${savedPlaceJapanese}ファイル`}
+          />{" "}
         </div>
         <div className="flex-1">
-          <h1>{fileInfo.fileName}</h1>
+          <h1 className="text-4xl">{fileInfo.fileName}</h1>
         </div>
       </div>
       <div className="flex">
