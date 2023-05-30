@@ -1,7 +1,7 @@
 import Footer from "./footer";
 import Header from "./header";
 import Main from "./main";
-import GoogleAnalytics from "./googleAnalytics";
+import GoogleAnalytics from "./GoogleAnalytics";
 export default function Home() {
   return (
     <>
