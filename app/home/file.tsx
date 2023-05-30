@@ -10,7 +10,15 @@ export interface FileInfoType {
   lastEditedData: string;
   savedPlace: string;
 }
-
+export interface FilesInfoType {
+  [key: string]: {
+    fileID: string;
+    fileName: string;
+    createdData: string;
+    lastEditedData: string;
+    savedPlace: string;
+  };
+}
 export default function File({ fileInfo }: { fileInfo: FileInfoType }) {
   console.log(fileInfo);
   const savedPlaceJapanese = (() => {
