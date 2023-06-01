@@ -69,3 +69,8 @@ async function getAllFiles(FileSystemDirectoryHandle) {
   }
   return allFiles;
 }
+async function addLocalFilesFromFileSystemDirectoryHandle(
+  FileSystemDirectoryHandle
+) {
+  const allFiles = await getAllFiles(FileSystemDirectoryHandle);
+}
