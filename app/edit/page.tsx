@@ -6,13 +6,14 @@ import Tools from "./tools";
 export default function EditHome(pageProps: {
   searchParams: { testId: string };
 }) {
-  const fileID = pageProps.searchParams.testId || "";
+  const fileID: string = pageProps.searchParams.testId || "";
+  console.log(fileID);
   if (!fileID) throw new Error("fileIDがありません");
   return (
     <>
       <Header />
       <Tools />
-      <EditMain file ID={fileID} />
+      <EditMain fileInfo={fileID} />
       <Footer />
     </>
   );

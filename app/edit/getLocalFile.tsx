@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 
-// 作り途中
 export function useLocalFile(fileID: string) {
-  const [file, setFile] = useState<LocalFileType | null>(null);
+  const [file, setFile] = useState<string | null>(null);
   useEffect(() => {
     const localFile = localStorage.getItem(fileID);
     if (localFile) {
-      setFile(JSON.parse(localFile));
+      setFile(localFile);
     }
   }, [fileID]);
   return file;
