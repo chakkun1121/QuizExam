@@ -38,7 +38,7 @@ export default function File({ fileInfo }: { fileInfo: FileInfoType }) {
           <Image
             width={48}
             height={48}
-            src={`/${fileInfo.savedPlace}.png`}
+            src={`/icons/${fileInfo.savedPlace}.png`}
             alt={`${savedPlaceJapanese}ファイル`}
           />{" "}
         </div>

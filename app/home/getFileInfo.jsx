@@ -16,10 +16,17 @@ import React from "react";
 export function useFilesInfo() {
   const [filesInfo, setFilesInfo] = React.useState(null);
   React.useEffect(() => {
-    const filesInfo = JSON.parse(localStorage.getItem("filesInfo") || JSON.stringify([]));
+    const filesInfo = JSON.parse(
+      localStorage.getItem("filesInfo") || JSON.stringify([])
+    );
     if (filesInfo) {
       setFilesInfo(filesInfo);
     }
   }, []);
   return filesInfo;
+}
+export default function useSetFilesInfo(filesInfo) {
+  React.useEffect(() => {
+    localStorage.setItem("filesInfo", JSON.stringify(filesInfo));
+  }, [filesInfo]);
 }

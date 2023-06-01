@@ -21,7 +21,9 @@ export default function Files() {
             })
           ) : (
             <p>
-              ファイルがありません。新しく作成するかローカルから開いてください。
+              ファイルがありません。新しく作成するか
+              <a onClick={() => openLocalFolder()}>ローカルから開いて</a>
+              ください。
             </p>
           )
         ) : (
@@ -30,4 +32,40 @@ export default function Files() {
       </div>
     </section>
   );
+}
+async function openLocalFolder() {
+  const FileSystemDirectoryHandle = await showDirectoryPicker();
+  const settingsFile = await getSettingsFile(FileSystemDirectoryHandle);
+  console.log(settingsFile);
+  console.log(await getAllFiles(FileSystemDirectoryHandle));
+}
+async function showDirectoryPicker() {
+  const FileSystemDirectoryHandle = window.showDirectoryPicker
+    ? await window.showDirectoryPicker({
+        mode: "readwrite",
+        startIn: "documents",
+      })
+    : null;
+  return FileSystemDirectoryHandle;
+}
+async function getSettingsFile(FileSystemDirectoryHandle) {
+  const settingsFile = await FileSystemDirectoryHandle.getFileHandle(
+    "settings.json",
+    { create: true }
+  );
+  return settingsFile;
+}
+async function getAllFiles(FileSystemDirectoryHandle) {
+  const allFiles = [];
+  for await (const entry of FileSystemDirectoryHandle.values()) {
+    if (entry.kind === "file") {
+      if (entry.name.endsWith(".quizexam.xml")) {
+        allFiles.push(entry);
+      }
+    } else if (entry.kind === "directory") {
+      const files = await getAllFiles(entry);
+      allFiles.push(...files);
+    }
+  }
+  return allFiles;
 }
