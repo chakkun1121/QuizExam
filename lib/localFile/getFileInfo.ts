@@ -1,13 +1,13 @@
 "use client";
-// export interface FilesInfoType {
-//   [key: string]: {
-//     fileID: string;
-//     fileName: string;
-//     createdData: string;
-//     lastEditedData: string;
-//     savedPlace: string;
-//   };
-// }
+export interface FilesInfoType {
+  [key: string]: {
+    fileID: string;
+    fileName: string;
+    createdData: string;
+    lastEditedData: string;
+    savedPlace: string;
+  };
+}
 import React from "react";
 /**
  * localStorage(filesInfo)の中身を取得するHook
@@ -25,7 +25,7 @@ export function useFilesInfo() {
   }, []);
   return filesInfo;
 }
-export default function useSetFilesInfo(filesInfo) {
+export default function useSetFilesInfo(filesInfo: FilesInfoType) {
   React.useEffect(() => {
     localStorage.setItem("filesInfo", JSON.stringify(filesInfo));
   }, [filesInfo]);

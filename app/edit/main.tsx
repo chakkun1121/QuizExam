@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { FileInfoType } from "../home/file";
-import { useFilesInfo } from "../home/getFileInfo";
+import { useFilesInfo } from "../../lib/localFile/getFileInfo";
 
 export default function EditMain(fileInfo: { fileInfo: string }) {
   const fileID = fileInfo.fileInfo;

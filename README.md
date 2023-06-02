@@ -17,7 +17,7 @@
 example.quizexam.xml
 
 ```xml
-<quizexam fileID="test-xxxx-xxxxxx-xxxxxx-xxxx">
+<quizexam fileID="test-xxxx-xxxxxx-xxxxxx-xxxx" createdDate="2022/6/1" lastUpdatedDate="2022/6/2">
   <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
   <!-- 標準の一問一答形式の場合 -->
     <problem>問題文</problem>

@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import File from "./file";
-import { useFilesInfo } from "./getFileInfo";
-
+import { useFilesInfo } from "../../lib/localFile/getFileInfo";
+import { openLocalFolder } from "../../lib/localFile/openLocalFolder";
 export default function Files() {
   const filesInfo = useFilesInfo();
   return (
@@ -32,45 +32,4 @@ export default function Files() {
       </div>
     </section>
   );
-}
-async function openLocalFolder() {
-  const FileSystemDirectoryHandle = await showDirectoryPicker();
-  const settingsFile = await getSettingsFile(FileSystemDirectoryHandle);
-  console.log(settingsFile);
-  console.log(await getAllFiles(FileSystemDirectoryHandle));
-}
-async function showDirectoryPicker() {
-  const FileSystemDirectoryHandle = window.showDirectoryPicker
-    ? await window.showDirectoryPicker({
-        mode: "readwrite",
-        startIn: "documents",
-      })
-    : null;
-  return FileSystemDirectoryHandle;
-}
-async function getSettingsFile(FileSystemDirectoryHandle) {
-  const settingsFile = await FileSystemDirectoryHandle.getFileHandle(
-    "settings.json",
-    { create: true }
-  );
-  return settingsFile;
-}
-async function getAllFiles(FileSystemDirectoryHandle) {
-  const allFiles = [];
-  for await (const entry of FileSystemDirectoryHandle.values()) {
-    if (entry.kind === "file") {
-      if (entry.name.endsWith(".quizexam.xml")) {
-        allFiles.push(entry);
-      }
-    } else if (entry.kind === "directory") {
-      const files = await getAllFiles(entry);
-      allFiles.push(...files);
-    }
-  }
-  return allFiles;
-}
-async function addLocalFilesFromFileSystemDirectoryHandle(
-  FileSystemDirectoryHandle
-) {
-  const allFiles = await getAllFiles(FileSystemDirectoryHandle);
 }
