@@ -1,7 +1,9 @@
 import Footer from "../footer";
 import Header from "../header";
 import PrivacyPolicy from "./main";
-
+export const metadata = {
+  title: "プライバシーポリシー | QuizExam | chakkun1121",
+};
 export default function PrivacyPolicyPages() {
   return (
     <>
