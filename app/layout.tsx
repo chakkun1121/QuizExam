@@ -11,6 +11,8 @@ export const metadata = {
     "QuizExamは自分で一問一答形式などのクイズを作成し、自分で回答することで試験本番の練習をするアプリです。対応するクイズ形式は単純な一問一答形式、穴埋め、選択問題、並べ替えです。",
   image: "/images/ogp.png",
   url: "https://quizexam.vercel.app/",
+  manifest: "/manifest.json",
+  themeColor: "#4ade80",
 };
 
 export default function RootLayout({

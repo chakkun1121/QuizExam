@@ -1,7 +1,7 @@
 export default function PrivacyPolicy() {
   return (
     <>
-      <h1 className="text-4xl p-1 font-bold">プライバシーポリシー</h1>
+      <h1 className="p-1 text-4xl font-bold">プライバシーポリシー</h1>
       <section className="p-1">
         <h2 className="text-3xl">cookieについて</h2>
         <p>
@@ -9,7 +9,6 @@ export default function PrivacyPolicy() {
           この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。この規約に関しての詳細は
           <a
             href="https://marketingplatform.google.com/about/analytics/terms/jp/"
-            className="underline text-blue-900"
             target="_blank"
           >
             Googleアナリティクスサービス利用規約のページ
@@ -17,7 +16,6 @@ export default function PrivacyPolicy() {
           や
           <a
             href="https://policies.google.com/technologies/ads?hl=ja"
-            className="underline text-blue-900"
             target="_blank"
           >
             Googleポリシーと規約ページ

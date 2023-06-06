@@ -4,6 +4,7 @@
     "usernamehw.errorlens",
     "foxundermoon.next-js",
     "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "ijs.reactnextjssnippets"
   ]
 }

@@ -1,5 +1,7 @@
-export async function getAllFiles(FileSystemDirectoryHandle:FileSystemDirectoryHandle) {
-  const allFiles = [];
+export async function getAllFiles(
+  FileSystemDirectoryHandle: FileSystemDirectoryHandle
+) {
+  const allFiles: FileSystemFileHandle[] = [];
   for await (const entry of FileSystemDirectoryHandle.values()) {
     if (entry.kind === "file") {
       if (entry.name.endsWith(".quizexam.xml")) {

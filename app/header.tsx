@@ -6,7 +6,7 @@ export default function Header() {
     <header className="flex bg-green-400 p-1">
       <div className="black flex-1">
         <h1 className="text-4xl font-bold">
-          <Link href="/" className="flex-none">
+          <Link href="/" className="flex-none text-black">
             QuizExam
           </Link>
         </h1>

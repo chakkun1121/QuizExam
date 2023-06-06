@@ -1,0 +1,10 @@
+{
+  "theme_color": "#4ade80",
+  "background_color": "#4ade80",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": "/",
+  "name": "QuizExam - 一問一答形式のクイズで試験本番の練習をしよう!",
+  "short_name": "QuizExam",
+  "description": "このアプリでは一問一答形式のクイズを作成し、自分で回答することができます。 対応するクイズ形式は単純な一問一答形式、穴埋め、選択問題、並べ替えです。"
+}

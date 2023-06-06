@@ -8,25 +8,26 @@ export interface FilesInfoType {
     savedPlace: string;
   };
 }
-import React from "react";
+import { getRoot } from "../originPrivateFileSystem/getRoot";
 /**
  * localStorage(filesInfo)の中身を取得するHook
  * @returns {FilesInfo} FilesInfoType
  */
-export function useFilesInfo() {
-  const [filesInfo, setFilesInfo] = React.useState(null);
-  React.useEffect(() => {
-    const filesInfo = JSON.parse(
-      localStorage.getItem("filesInfo") || JSON.stringify([])
-    );
-    if (filesInfo) {
-      setFilesInfo(filesInfo);
-    }
-  }, []);
+export async function getFilesInfo() {
+  const opfsRoot = await getRoot();
+  const FileHandle = await opfsRoot.getFileHandle("filesInfo.json", {
+    create: true,
+  });
+  const filesInfo: FilesInfoType = await FileHandle?.getFile();
+  console.log(filesInfo);
   return filesInfo;
 }
-export default function useSetFilesInfo(filesInfo: FilesInfoType) {
-  React.useEffect(() => {
-    localStorage.setItem("filesInfo", JSON.stringify(filesInfo));
-  }, [filesInfo]);
+export async function setFilesInfo(filesInfo: FilesInfoType) {
+  const opfsRoot = await getRoot();
+  const FIleHandle = await opfsRoot.getFileHandle("filesInfo.json", {
+    create: true,
+  });
+  const fileInfoJson = await FIleHandle.createWritable();
+  await fileInfoJson.write(JSON.stringify({ filesInfo: { filesInfo } }));
+  await fileInfoJson.close();
 }

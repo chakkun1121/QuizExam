@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import Footer from "../footer";
 import Header from "../header";
 import EditMain from "./main";
@@ -8,7 +9,7 @@ export default function EditHome(pageProps: {
 }) {
   const fileID: string = pageProps.searchParams.testId || "";
   console.log(fileID);
-  if (!fileID) throw new Error("fileIDがありません");
+  // if (!fileID) notFound();
   return (
     <>
       <Header />
