@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { xmlFileToJson } from "../../lib/localFile/xmlFileToJson";
 import { getLocalFileFromID } from "../../lib/localFile/getLocalFileFromID";
-import { fileSystemHandleToText } from "../../lib/localFile/FIleSystemHandleToText";
+import { fileSystemHandleToText } from "/lib/localFile/fileSystemHandleToText";
 
 export default function EditMain(fileInfo: { fileInfo: string }) {
   const fileID = fileInfo.fileInfo;

@@ -1,5 +1,5 @@
 import { getRoot } from "../originPrivateFileSystem/getRoot";
-import { fileSystemHandleToText } from "./FIleSystemHandleToText";
+import { fileSystemHandleToText } from "./fileSystemHandleToText";
 import { getAllFiles } from "./getAllFiles";
 import { getFileInfoFromFile } from "./getFileInfoFromFile";
 
