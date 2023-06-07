@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { xmlFileToJson } from "../../lib/localFile/xmlFileToJson";
 import { getLocalFileFromID } from "../../lib/localFile/getLocalFileFromID";
-import { fileSystemHandleToText } from "/lib/localFile/fileSystemHandleToText";
+import { fileSystemHandleToText } from "../../lib/localFile/fileSystemHandleToText";
 
 export default function EditMain(fileInfo: { fileInfo: string }) {
   const fileID = fileInfo.fileInfo;
@@ -11,11 +11,10 @@ export default function EditMain(fileInfo: { fileInfo: string }) {
   if (fileID) {
     //ファイル情報を取得
     const [filePlace, setFilePlace] = useState<string>("");
-    useEffect(
-      (async function () {
-        getFilePlace(fileID).then((filePlace) => {
-          setFilePlace(filePlace);
-        });
+    useEffect(() => {
+      const getFile = async () => {
+        const filePlace = await getFilePlace(fileID);
+        setFilePlace(filePlace);
         //ファイル本体を取得
         switch (filePlace) {
           case "local":
@@ -28,14 +27,14 @@ export default function EditMain(fileInfo: { fileInfo: string }) {
           default:
             break;
         }
-      })(),
-      [fileID]
-    );
+      };
+      getFile();
+    }, [fileID]);
   }
 
   return <></>;
 }
-async function getFilePlace(fileID: string) {
+async function getFilePlace(_fileID: string) {
   // const filesInfo: FileInfoType[] = (await getFilesInfo()) || [];
   // console.debug("filesInfo", filesInfo);
   // console.debug("fileID", fileID);
