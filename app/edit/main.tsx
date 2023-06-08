@@ -7,7 +7,7 @@ import { fileSystemHandleToText } from "../../lib/localFile/fileSystemHandleToTe
 export default function EditMain(fileInfo: { fileInfo: string }) {
   const fileID = fileInfo.fileInfo;
   console.log(fileID);
-  const [fileJson, setFileJson] = useState<object>({});
+  const [stringFile, setStringFile] = useState<string>("");
   if (fileID) {
     //ファイル情報を取得
     const [filePlace, setFilePlace] = useState<string>("");
@@ -21,8 +21,8 @@ export default function EditMain(fileInfo: { fileInfo: string }) {
             const fileSystemHandle: FileSystemFileHandle =
               await getLocalFileFromID(fileID);
             const stringFile = await fileSystemHandleToText(fileSystemHandle);
+            setStringFile(stringFile);
             console.debug(stringFile);
-            setFileJson(xmlFileToJson(stringFile));
             break;
           default:
             break;
