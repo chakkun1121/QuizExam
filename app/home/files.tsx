@@ -1,14 +1,11 @@
 "use client";
 import Link from "next/link";
 import File from "./file";
-import { getFilesInfo } from "../../lib/localFile/getFileInfo";
-import { openLocalFolder } from "../../lib/localFile/openLocalFolder";
-import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
+
 export default function Files() {
-  const filesInfo = getFilesInfo();
-  useEffect(() => {
-    openLocalFolder();
-  }, []);
+  const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);
   return (
     <section>
       <div className="flex">
@@ -16,11 +13,12 @@ export default function Files() {
         <Link className="flex-none" href="/edit">
           新規作成
         </Link>
+        <button className="flex-none">ローカルファイルを開く</button>
       </div>
       <div>
         {filesInfo ? (
           filesInfo.length ? (
-            filesInfo.map((fileInfo) => {
+            filesInfo.map((fileInfo: fileInfoType) => {
               return <File fileInfo={fileInfo} />;
             })
           ) : (

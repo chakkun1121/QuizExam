@@ -15,9 +15,12 @@ import { getRoot } from "../originPrivateFileSystem/getRoot";
  */
 export async function getFilesInfo() {
   const opfsRoot = await getRoot();
-  const FileHandle = await opfsRoot.getFileHandle("filesInfo.json", {
-    create: true,
-  });
+  const FileHandle: FileSystemFileHandle = await opfsRoot.getFileHandle(
+    "filesInfo.json",
+    {
+      create: true,
+    }
+  );
   const filesInfo: FilesInfoType = await FileHandle?.getFile();
   console.log(filesInfo);
   return filesInfo;
