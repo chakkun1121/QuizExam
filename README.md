@@ -29,6 +29,37 @@ filesInfo.json
 }
 ```
 
+settings.json
+
+```json
+{
+  "settings": {
+    "theme": "light"
+  }
+}
+```
+
+achievement.json
+
+```json
+{
+  "achievement": {
+    "test-xxxx-xxxxxx-xxxxxx-xxxx": {
+      [
+        {
+          "date": "2022/6/1",
+          "detail":[
+            "quiz-xxxx-xxxxxx-xxxxxx-xxxx":{
+              "correct":true,
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+```
+
 ## ファイル構造について
 
 example.quizexam.xml

@@ -11,8 +11,8 @@ export default function EditHome(pageProps: {
   return (
     <>
       <Header />
-      <Tools fileID={fileID} />
-      <EditMain fileInfo={fileID} />
+      <Tools />
+      <EditMain fileID={fileID} />
       <Footer />
     </>
   );

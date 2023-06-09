@@ -4,13 +4,12 @@ import { Button } from "@mui/material";
 import { Save as SaveIcon, Add as AddIcon } from "@mui/icons-material";
 import { useRecoilState } from "recoil";
 import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
-import { useState } from "react";
-export default function Tools({ fileID }: { fileID: string }) {
+import { currentFileInfoState } from "./main";
+export default function Tools() {
   const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);
   console.log(filesInfo);
-  const [fileInfo, setFileInfo] = useState<fileInfoType>(
-    filesInfo?.files?.find((fileInfo: fileInfoType) => fileInfo.ID === fileID)
-  );
+  const [fileInfo, setFileInfo] =
+    useRecoilState<fileInfoType>(currentFileInfoState);
   console.log(fileInfo);
   return (
     <section className="flex bg-blue-200 p-2">

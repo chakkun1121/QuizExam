@@ -33,8 +33,8 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
       </div>
       <div className="flex">
         <div className="flex-none">
-          <p>作成日:{fileInfo.createdData.toString()}</p>
-          <p>最終編集日:{fileInfo.lastEditedData.toString()}</p>
+          <p>作成日:{fileInfo.createdDate.toString()}</p>
+          <p>最終編集日:{fileInfo.lastUpdatedDate.toString()}</p>
         </div>
         <div className="buttons">
           <Link href={`/edit?testId=${fileInfo.ID}`}>編集</Link>

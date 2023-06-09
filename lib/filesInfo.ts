@@ -15,18 +15,20 @@ export const filesInfoState = atom({
 export interface fileInfoType {
   ID: string;
   name: string;
-  createdData: Date;
-  lastEditedData: Date;
+  createdDate: Date;
+  lastUpdatedDate: Date;
   content: string;
-  savedPlace: string;
+  savedPlace: savedPlaceType;
 }
+export type savedPlaceType = "" | "local" | "cloud" | "GoogleDrive";
+
 export interface filesInfoType {
   files: [
     {
       ID: string;
       name: string;
-      createdData: Date;
-      lastEditedData: Date;
+      createdDate: Date;
+      lastUpdatedDate: Date;
       content: string;
       savedPlace: string;
     }

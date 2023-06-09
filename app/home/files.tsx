@@ -3,7 +3,7 @@ import Link from "next/link";
 import File from "./file";
 import { useRecoilState } from "recoil";
 import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
-
+import { uploadFile } from "../../lib/localFile/uploadFile";
 export default function Files() {
   const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);
   return (
@@ -13,7 +13,9 @@ export default function Files() {
         <Link className="flex-none" href="/edit">
           新規作成
         </Link>
-        <button className="flex-none">ローカルファイルを開く</button>
+        <button className="flex-none" onClick={uploadFile}>
+          ローカルファイルを開く
+        </button>
       </div>
       <div>
         {filesInfo ? (
