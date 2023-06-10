@@ -1,6 +1,6 @@
 "use client";
 import { useRecoilState } from "recoil";
-import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
+import { filesInfoState, fileInfoType, filesInfoType } from "../../lib/filesInfo";
 import { atom } from "recoil";
 export const currentFileInfoState = atom<fileInfoType>({
   key: "currentFileInfoState",
@@ -15,12 +15,12 @@ export const currentFileInfoState = atom<fileInfoType>({
 });
 export default function EditMain({ fileID }: { fileID: string }) {
   console.log(fileID);
-  const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);
+  const [filesInfo] = useRecoilState<filesInfoType>(filesInfoState);
   const [fileInfo, setFileInfo] =
-    useRecoilState<fileInfoType>(currentFileInfoState);
+    useRecoilState(currentFileInfoState);
   if (fileID) {
     setFileInfo(
-      filesInfo.find((fileInfo: fileInfoType) => fileInfo.ID === fileID)
+      filesInfo.files.find((fileInfo: fileInfoType) => fileInfo.ID === fileID)
     );
   }
   return <></>;

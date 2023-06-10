@@ -7,9 +7,9 @@ export async function getFileInfoFromFile(
 ) {
   const jsonFile: any = xmlFileToJson(stringFile);
   const fileID: string = jsonFile.quizexam["@_fileID"];
-  const createdDate: Date = new Date(jsonFile.quizexam("@_createdDate"));
+  const createdDate: Date = new Date(jsonFile.quizexam["@_createdDate"]);
   const lastUpdatedDate: Date = new Date(
-    jsonFile.quizexam("@_lastUpdatedDate")
+    jsonFile.quizexam["@_lastUpdatedDate"]
   );
   const fileInfo: fileInfoType = {
     ID: fileID,

@@ -1,24 +1,8 @@
 "use client";
-import { getFileInfoFromFile } from "./getFileInfoFromFile";
-import { fileInfoType, filesInfoState } from "../filesInfo";
-import { addFileToFilesInfo } from "../addFileToFIlesInfo";
 
-export async function uploadFile() {
-  const FileSystemFileHandle: FileSystemFileHandle = await showFilePicker();
-  if (!FileSystemFileHandle) return;
-  const file = await FileSystemFileHandle?.getFile();
-  const fileContent = await file.text();
-  const fileName = FileSystemFileHandle.name;
-  const fileInfo: fileInfoType = await getFileInfoFromFile(
-    fileContent,
-    fileName,
-    "local"
-  );
-  addFileToFilesInfo(fileInfo);
-}
-async function showFilePicker() {
-  const FileSystemFileHandle: FileSystemFileHandle = window.showDirectoryPicker
-    ? await window.showOpenFilePicker({
+export async function showFilePicker() {
+  if(!window.showOpenFilePicker) throw new Error('showOpenFilePicker is not defined');
+  const FileSystemFileHandles: FileSystemFileHandle[] = await window.showOpenFilePicker({
         types: [
           {
             description: "QuizExam File",
@@ -27,7 +11,7 @@ async function showFilePicker() {
             },
           },
         ],
-      })[0]
-    : null;
+  })
+  const FileSystemFileHandle:FileSystemFileHandle = FileSystemFileHandles[0];
   return FileSystemFileHandle;
 }
