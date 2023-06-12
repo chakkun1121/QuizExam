@@ -67,21 +67,22 @@ example.quizexam.xml
 ```xml
 <quizexam fileID="test-xxxx-xxxxxx-xxxxxx-xxxx" createdDate="2022/6/1" lastUpdatedDate="2022/6/2">
   <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
-  <!-- 標準の一問一答形式の場合 -->
+    <!-- 標準の一問一答形式の場合 -->
     <problem>問題文</problem>
     <answer>答え</answer>
   </quiz>
   <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
     <!-- 穴埋め形式の場合 -->
     <problem>問題文</problem>
-    <answer showDefault>解答<hole>穴埋め部分</hole></answer>
+    <answer showDefault="true">解答 <hole>穴埋め部分</hole>
+    </answer>
   </quiz>
   <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
     <!-- 選択問題形式の場合 -->
     <problem>問題文</problem>
-    <answer showDefault>
+    <answer showDefault="true">
       <choices>
-        <choice answer>選択肢1(正解)</choice>
+        <choice answer="true">選択肢1(正解)</choice>
         <choice>選択肢2(不正解)</choice>
       </choices>
     </answer>
@@ -89,7 +90,7 @@ example.quizexam.xml
   <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
     <!-- 並べ替え形式の場合 -->
     <problem>問題文</problem>
-    <answer showDefault>
+    <answer showDefault="true">
       <sorting>
         <word>単語1</word>
         <word>単語2</word>
@@ -97,8 +98,8 @@ example.quizexam.xml
     </answer>
   </quiz>
   <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
-  <!-- 解答のみの穴埋め -->
-    <answer showDefault>解答<hole>穴埋め部分</hole></answer>
+    <!-- 解答のみの穴埋め -->
+    <answer showDefault="true">解答 <hole>穴埋め部分</hole></answer>
   </quiz>
 </quizexam>
 ```
