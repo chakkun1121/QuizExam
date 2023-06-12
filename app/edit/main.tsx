@@ -1,6 +1,6 @@
 "use client";
 import { useRecoilState } from "recoil";
-import { filesInfoState, fileInfoType, filesInfoType } from "../../lib/filesInfo";
+import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
 import { atom } from "recoil";
 export const currentFileInfoState = atom<fileInfoType>({
   key: "currentFileInfoState",
@@ -15,7 +15,7 @@ export const currentFileInfoState = atom<fileInfoType>({
 });
 export default function EditMain({ fileID }: { fileID: string }) {
   console.log(fileID);
-  const [filesInfo] = useRecoilState<filesInfoType>(filesInfoState);
+  const [filesInfo] = useRecoilState(filesInfoState);
   const [fileInfo, setFileInfo] =
     useRecoilState(currentFileInfoState);
   if (fileID) {
@@ -23,5 +23,12 @@ export default function EditMain({ fileID }: { fileID: string }) {
       filesInfo.files.find((fileInfo: fileInfoType) => fileInfo.ID === fileID)
     );
   }
-  return <></>;
+  const xmlFile = new DOMParser().parseFromString(fileInfo?.content || "", "text/xml");
+  const QuizXMLArray=Array.from(xmlFile.getElementsByTagName("quiz"));
+  console.log(QuizXMLArray);
+  return <>{QuizXMLArray.map(quizXML => {
+    return <div>{quizXML.innerHTML}</div>
+  })}</>;
 }
+
+
