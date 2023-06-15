@@ -1,8 +1,6 @@
 import GoogleAnalytics from "./GoogleAnalytics";
-import "./globals.css";
-import { Inter } from "next/font/google";
+import "./globals.scss";
 import { Recoil } from "./recoil";
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title:
@@ -24,7 +22,7 @@ export default function RootLayout({
     <html lang="ja">
       <GoogleAnalytics />
       <Recoil>
-        <body className={inter.className}>{children}</body>
+        <body>{children}</body>
       </Recoil>
     </html>
   );

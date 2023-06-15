@@ -20,6 +20,7 @@
     "@types/react-dom": "18.2.4",
     "@types/wicg-file-system-access": "^2020.9.6",
     "autoprefixer": "10.4.14",
+    "fast-xml-parser": "latest",
     "next": "latest",
     "next-pwa": "^5.6.0",
     "postcss": "8.4.24",
@@ -27,10 +28,10 @@
     "react-dom": "latest",
     "recoil": "^0.7.7",
     "recoil-persist": "^4.2.0",
+    "sass": "^1.63.4",
     "tailwindcss": "3.3.2",
     "typescript": "latest",
-    "uuid": "^9.0.0",
-    "fast-xml-parser": "latest"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "prettier": "^2.8.8",
