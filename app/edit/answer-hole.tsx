@@ -9,7 +9,7 @@ export default function AnswerHole({ answerXML }: { answerXML: Element }) {
     });
   return (
     <>
-      <p contentedita>
+      <p contenteditable>
         {answerArray.map((answer, i) => {
           return i % 2 === 0 ? answer : <Hole>{answer}</Hole>;
         })}
