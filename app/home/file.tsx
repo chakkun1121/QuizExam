@@ -5,7 +5,6 @@ import Link from "next/link";
 import { fileInfoType } from "../../lib/filesInfo";
 
 export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
-  console.log(fileInfo);
   const savedPlaceJapanese = (() => {
     switch (fileInfo.savedPlace) {
       case "local":

@@ -1,16 +1,16 @@
-<quizexam fileID="test-xxxx-xxxxxx-xxxxxx-xxxx" createdDate="2022/6/1" lastUpdatedDate="2022/6/2">
-  <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
+<quizexam fileID="test-54ec45a4-4ccb-8337-b867-1113bfc8ffd7" createdDate="2022/6/1" lastUpdatedDate="2022/6/2">
+  <quiz quizID="quiz-ccad00ef-f23a-e23c-da5f-5f62ddb58fe1" type="standard">
     <!-- 標準の一問一答形式の場合 -->
     <problem>問題文</problem>
     <answer>答え</answer>
   </quiz>
-  <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
+  <quiz quizID="quiz-6040a644-7cbf-e0ef-60ab-8f7c12e89bc7" type="hold">
     <!-- 穴埋め形式の場合 -->
     <problem>問題文</problem>
     <answer showDefault="true">解答 <hole>穴埋め部分</hole>
     </answer>
   </quiz>
-  <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
+  <quiz quizID="quiz-f2ce6783-c53c-fd33-779b-4e3298d43781" type="choices">
     <!-- 選択問題形式の場合 -->
     <problem>問題文</problem>
     <answer showDefault="true">
@@ -20,7 +20,7 @@
       </choices>
     </answer>
   </quiz>
-  <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
+  <quiz quizID="quiz-ffb1c57f-2511-0d4a-24db-fc39f646c49e" type="sorting">
     <!-- 並べ替え形式の場合 -->
     <problem>問題文</problem>
     <answer showDefault="true">
@@ -30,7 +30,7 @@
       </sorting>
     </answer>
   </quiz>
-  <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
+  <quiz quizID="quiz-24511461-813d-77c2-59a5-4185aa1fa94f" type="hold">
     <!-- 解答のみの穴埋め -->
     <answer showDefault="true">解答 <hole>穴埋め部分</hole>
     </answer>

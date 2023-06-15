@@ -7,11 +7,10 @@ export default function EditHome(pageProps: {
   searchParams: { testId: string };
 }) {
   const fileID: string = pageProps.searchParams.testId || "";
-  console.log(fileID);
   return (
     <>
       <Header />
-      <Tools />
+      <Tools fileID={fileID} />
       <EditMain fileID={fileID} />
       <Footer />
     </>

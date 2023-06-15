@@ -22,7 +22,6 @@ export async function getFilesInfo() {
     }
   );
   const filesInfo = await FileHandle?.getFile();
-  console.log(filesInfo);
   return filesInfo;
 }
 export async function setFilesInfo(filesInfo: FilesInfoType) {

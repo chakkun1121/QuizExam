@@ -62,44 +62,4 @@ achievement.json
 
 ## ファイル構造について
 
-example.quizexam.xml
-
-```xml
-<quizexam fileID="test-xxxx-xxxxxx-xxxxxx-xxxx" createdDate="2022/6/1" lastUpdatedDate="2022/6/2">
-  <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
-    <!-- 標準の一問一答形式の場合 -->
-    <problem>問題文</problem>
-    <answer>答え</answer>
-  </quiz>
-  <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
-    <!-- 穴埋め形式の場合 -->
-    <problem>問題文</problem>
-    <answer showDefault="true">解答 <hole>穴埋め部分</hole>
-    </answer>
-  </quiz>
-  <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
-    <!-- 選択問題形式の場合 -->
-    <problem>問題文</problem>
-    <answer showDefault="true">
-      <choices>
-        <choice answer="true">選択肢1(正解)</choice>
-        <choice>選択肢2(不正解)</choice>
-      </choices>
-    </answer>
-  </quiz>
-  <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
-    <!-- 並べ替え形式の場合 -->
-    <problem>問題文</problem>
-    <answer showDefault="true">
-      <sorting>
-        <word>単語1</word>
-        <word>単語2</word>
-      </sorting>
-    </answer>
-  </quiz>
-  <quiz quizID="quiz-xxxx-xxxxxx-xxxxxx-xxxx">
-    <!-- 解答のみの穴埋め -->
-    <answer showDefault="true">解答 <hole>穴埋め部分</hole></answer>
-  </quiz>
-</quizexam>
-```
+[ファイル例](./example.quizexam.xml)
