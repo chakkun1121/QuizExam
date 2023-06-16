@@ -2,7 +2,6 @@ import { FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material";
 
 export default function AnswerChoices({ answerXML }: { answerXML: Element }) {
   const choices = Array.from(answerXML.getElementsByTagName("choice"));
-  console.log(choices);
   const answerIndex = choices.findIndex(
     (choice) => choice.getAttribute("answer") === "true"
   );

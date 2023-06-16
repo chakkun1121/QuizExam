@@ -3,7 +3,7 @@ import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
 const { persistAtom } = recoilPersist({
   key: "filesInfo",
-  storage: typeof window === "undefined" ? undefined : window.localStorage,
+  storage: window?.localStorage,
 });
 export const filesInfoState = atom({
   key: "filesInfo",

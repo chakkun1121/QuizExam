@@ -24,10 +24,13 @@
     <!-- 並べ替え形式の場合 -->
     <problem>問題文</problem>
     <answer showDefault="true">
-      <sorting>
-        <word>単語1</word>
-        <word>単語2</word>
-      </sorting>
+    解答
+      <sort>
+        単語1
+      </sort>
+      <sort>
+        単語2
+      </sort>
     </answer>
   </quiz>
   <quiz quizID="quiz-24511461-813d-77c2-59a5-4185aa1fa94f" type="hold">
