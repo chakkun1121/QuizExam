@@ -4,19 +4,13 @@ import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
 import { atom } from "recoil";
 import { useState } from "react";
 import Quiz from "./quiz";
-export const currentFileInfoState = atom<fileInfoType>({
-  key: "currentFileInfoState",
-  default: {
-    ID: "",
-    name: "",
-    createdDate: new Date(),
-    lastUpdatedDate: new Date(),
-    savedPlace: "",
-    content: "",
-  },
+export const resentFileArrayAtom = atom({
+  key: "resentFileArray",
+  default: []
 });
 export default function EditMain({ fileID }: { fileID: string }) {
   const [filesInfo] = useRecoilState(filesInfoState);
+  const [resentFileArray, setRecentFileArray] = useRecoilState(resentFileArrayAtom);
   const fileInfo =
     filesInfo?.files?.find(
       (fileInfo: fileInfoType) => fileInfo.ID === fileID
@@ -25,16 +19,17 @@ export default function EditMain({ fileID }: { fileID: string }) {
     fileInfo?.content || "",
     "text/xml"
   );
-  const [QuizXMLArray] = useState(
+  setRecentFileArray(
     Array.from(xmlFile.getElementsByTagName("quiz"))
   );
   return (
     <>
-      {QuizXMLArray.map((quizXML) => {
+      {resentFileArray.map((quizXML,i) => {
         return (
           <Quiz
             key={quizXML.attributes["quizID"].value}
-            quizXML={quizXML}
+            quizID={quizXML.attributes["quizID"].value}
+            index={i}
             type={quizXML.attributes["type"].value}
           />
         );

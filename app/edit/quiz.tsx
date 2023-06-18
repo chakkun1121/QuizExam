@@ -1,20 +1,27 @@
 "use client";
 
 import { MenuItem, Select, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormControl, InputLabel } from "@mui/material";
 import Answer from "./answer";
+import { resentFileArrayAtom } from "./main";
+import { useRecoilState } from "recoil";
+import { filesInfoState } from "../../lib/filesInfo";
+import { FilesInfoType } from "../../lib/localFile/getFileInfo";
 
 export default function Quiz({
-  quizXML,
+  quizID,
+  index,
   type,
 }: {
-  quizXML: Element;
+  quizID: string;
+  index: number;
   type: "standard" | "hold" | "choices" | "sorting";
-}) {
-  const problem: string = quizXML.getElementsByTagName("problem")[0]?.innerHTML;
-  const answer: Element = quizXML.getElementsByTagName("answer")[0];
-  const [Quiztype, setQuizType] = useState<
+  }) {
+  const [resentFileArray, setRecentFileArray] = useRecoilState<Array<Element>>(resentFileArrayAtom);
+  const [quizXML, setQuizXML] = useState<Element>(resentFileArray[index]);
+  console.log(quizXML)
+  const [QuizType, setQuizType] = useState<
     "standard" | "hold" | "choices" | "sorting"
   >(type);
   const handleChange = (event) => {
@@ -29,13 +36,13 @@ export default function Quiz({
             id="problem"
             label="問題"
             variant="standard"
-            defaultValue={problem}
+            defaultValue={quizXML.getElementsByTagName("problem")[0].innerHTML}
           />
         </div>
       </div>
       <div className="md:flex">
         <div className="flex-1">
-          <Answer answerXML={answer} type={Quiztype} />
+          <Answer index={index} type={QuizType} />
         </div>
         <div className="flex-none md:m-2 md:w-80">
           <FormControl fullWidth>
@@ -43,7 +50,7 @@ export default function Quiz({
             <Select
               labelId="choose-type"
               id="choose-type-select"
-              value={Quiztype}
+              value={QuizType}
               label="形式"
               onChange={handleChange}
             >
