@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
 import { atom } from "recoil";
 import Quiz from "./quiz";
+import { useEffect } from "react";
 export const resentFileArrayAtom = atom<Array<Element>>({
   key: "resentFileArray",
   default: [],
@@ -19,11 +20,13 @@ export default function EditMain({ fileID }: { fileID: string }) {
     fileInfo?.content || "",
     "text/xml"
   );
-  setRecentFileArray(Array.from(xmlFile.getElementsByTagName("quiz")));
+  useEffect(() => {
+    setRecentFileArray(Array.from(xmlFile.getElementsByTagName("quiz")));
+  }, []);
   console.log(resentFileArray);
   return (
     <>
-      {/* {resentFileArray.map((quizXML, i) => {
+      {resentFileArray.map((quizXML, i) => {
         return (
           <Quiz
             key={quizXML.attributes["quizID"].value}
@@ -31,7 +34,7 @@ export default function EditMain({ fileID }: { fileID: string }) {
             type={quizXML.attributes["type"].value}
           />
         );
-      })} */}
+      })}
     </>
   );
 }
