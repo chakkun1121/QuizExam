@@ -1,7 +1,7 @@
 "use client";
 
 import { MenuItem, Select, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormControl, InputLabel } from "@mui/material";
 import Answer from "./answer";
 import { resentFileArrayAtom } from "./main";
@@ -14,16 +14,32 @@ export default function Quiz({
   index: number;
   type: "standard" | "hold" | "choices" | "sorting";
 }) {
-  const [resentFileArray] = useRecoilState<Array<Element>>(resentFileArrayAtom);
-  console.log(resentFileArray[index]);
+  const [resentFileArray, setRecentFileArray] =
+    useRecoilState<Array<Element>>(resentFileArrayAtom);
   const [quizXML, setQuizXML] = useState<Element>(resentFileArray[index]);
-  console.log(quizXML);
   const [QuizType, setQuizType] = useState<
     "standard" | "hold" | "choices" | "sorting"
   >(type);
+  useEffect(() => {
+    setRecentFileArray((resentFileArray) => {
+      const newFileArray = [...resentFileArray];
+      console.log(index);
+      console.log(newFileArray[index]);
+      newFileArray[index] = quizXML;
+      console.log(newFileArray);
+      return newFileArray;
+    });
+  }, [quizXML]);
   const handleChange = (event) => {
     setQuizType(event.target.value);
   };
+  function saveChange(e: React.ChangeEvent<HTMLInputElement>): undefined {
+    console.log(e.target.value);
+    setQuizXML(() => {
+      quizXML.getElementsByTagName("problem")[0].innerHTML = e.target.value;
+      return quizXML;
+    });
+  }
   return (
     <div className="m-2 rounded bg-blue-300 p-2">
       <div className="flex">
@@ -34,6 +50,7 @@ export default function Quiz({
             label="問題"
             variant="standard"
             defaultValue={quizXML.getElementsByTagName("problem")[0]?.innerHTML}
+            onChange={saveChange}
           />
         </div>
       </div>

@@ -4,12 +4,13 @@ import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
 import { atom } from "recoil";
 import Quiz from "./quiz";
 import { useEffect } from "react";
+import { getFileInfoFromFile } from "../../lib/localFile/getFileInfoFromFile";
 export const resentFileArrayAtom = atom<Array<Element>>({
   key: "resentFileArray",
   default: [],
 });
 export default function EditMain({ fileID }: { fileID: string }) {
-  const [filesInfo] = useRecoilState(filesInfoState);
+  const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);
   const [resentFileArray, setRecentFileArray] =
     useRecoilState<Array<Element>>(resentFileArrayAtom);
   const fileInfo =
@@ -23,6 +24,18 @@ export default function EditMain({ fileID }: { fileID: string }) {
   useEffect(() => {
     setRecentFileArray(Array.from(xmlFile.getElementsByTagName("quiz")));
   }, []);
+  useEffect(() => {
+    async function a() {
+      const createdDate = (
+        await getFileInfoFromFile(fileID, xmlFile.toString(), "local")
+      ).createdDate;
+      const nowDate = new Date();
+      console.log(createdDate);
+      // const resentFileXML = Array.from(resentFileArray).map((quizXML) => {
+      // }
+    }
+    a();
+  }, [resentFileArray]);
   console.log(resentFileArray);
   return (
     <>

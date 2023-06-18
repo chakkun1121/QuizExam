@@ -63,3 +63,13 @@ achievement.json
 ## ファイル構造について
 
 [ファイル例](./example.quizexam.xml)
+
+### resentFileArray<Array<Element>>
+
+```json
+[
+  <quiz quizID="quiz-ccad00ef-f23a-e23c-da5f-5f62ddb58fe1" type="standard"><problem>問題文</problem><answer>答え</answer></quiz> ,
+  <quiz quizID="quiz-6040a644-7cbf-e0ef-60ab-8f7c12e89bc7" type="hold"><problem>問題文</problem><answer showDefault="true"解答 <hole>穴埋め部分</hole></answer></quiz>
+  //このように<Array<Element>> とする
+]
+```
