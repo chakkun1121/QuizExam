@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { resentFileArrayAtom } from "./main";
+import { getAnswerXML, resentFileArrayAtom } from "./main";
 
 export default function AnswerSorting({ index }: { index: number }) {
-    const [resentFileArray, setRecentFileArray] = useRecoilState(resentFileArrayAtom);
-  const [answerXML, setAnswerXML] = useState<Element>(resentFileArray[index].getElementsByTagName("answer")[0]);
+  const [answerXML, setAnswerXML] = useState<Element>(getAnswerXML(index));
   const answerArray = answerXML.innerHTML
     .split(/\<sort\>|\<\/sort\>/)
     .map((answer) => {

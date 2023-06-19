@@ -1,26 +1,23 @@
 "use client";
 
 import { MenuItem, Select, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FormControl, InputLabel } from "@mui/material";
 import Answer from "./answer";
 import { resentFileArrayAtom } from "./main";
 import { useRecoilState } from "recoil";
-import { filesInfoState } from "../../lib/filesInfo";
-import { FilesInfoType } from "../../lib/localFile/getFileInfo";
 
 export default function Quiz({
-  quizID,
   index,
   type,
 }: {
-  quizID: string;
   index: number;
   type: "standard" | "hold" | "choices" | "sorting";
-  }) {
-  const [resentFileArray, setRecentFileArray] = useRecoilState<Array<Element>>(resentFileArrayAtom);
+}) {
+  const [resentFileArray] = useRecoilState<Array<Element>>(resentFileArrayAtom);
+  console.log(resentFileArray[index]);
   const [quizXML, setQuizXML] = useState<Element>(resentFileArray[index]);
-  console.log(quizXML)
+  console.log(quizXML);
   const [QuizType, setQuizType] = useState<
     "standard" | "hold" | "choices" | "sorting"
   >(type);
@@ -36,7 +33,7 @@ export default function Quiz({
             id="problem"
             label="問題"
             variant="standard"
-            defaultValue={quizXML.getElementsByTagName("problem")[0].innerHTML}
+            defaultValue={quizXML.getElementsByTagName("problem")[0]?.innerHTML}
           />
         </div>
       </div>

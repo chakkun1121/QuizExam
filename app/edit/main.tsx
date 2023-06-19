@@ -2,15 +2,15 @@
 import { useRecoilState } from "recoil";
 import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
 import { atom } from "recoil";
-import { useState } from "react";
 import Quiz from "./quiz";
-export const resentFileArrayAtom = atom({
+export const resentFileArrayAtom = atom<Array<Element>>({
   key: "resentFileArray",
-  default: []
+  default: [],
 });
 export default function EditMain({ fileID }: { fileID: string }) {
   const [filesInfo] = useRecoilState(filesInfoState);
-  const [resentFileArray, setRecentFileArray] = useRecoilState(resentFileArrayAtom);
+  const [resentFileArray, setRecentFileArray] =
+    useRecoilState<Array<Element>>(resentFileArrayAtom);
   const fileInfo =
     filesInfo?.files?.find(
       (fileInfo: fileInfoType) => fileInfo.ID === fileID
@@ -19,21 +19,23 @@ export default function EditMain({ fileID }: { fileID: string }) {
     fileInfo?.content || "",
     "text/xml"
   );
-  setRecentFileArray(
-    Array.from(xmlFile.getElementsByTagName("quiz"))
-  );
+  setRecentFileArray(Array.from(xmlFile.getElementsByTagName("quiz")));
+  console.log(resentFileArray);
   return (
     <>
-      {resentFileArray.map((quizXML,i) => {
+      {/* {resentFileArray.map((quizXML, i) => {
         return (
           <Quiz
             key={quizXML.attributes["quizID"].value}
-            quizID={quizXML.attributes["quizID"].value}
             index={i}
             type={quizXML.attributes["type"].value}
           />
         );
-      })}
+      })} */}
     </>
   );
+}
+export function getAnswerXML(index: number): Element {
+  const [resentFileArray] = useRecoilState(resentFileArrayAtom);
+  return resentFileArray[index].getElementsByTagName("answer")[0];
 }

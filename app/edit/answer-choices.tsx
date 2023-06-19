@@ -1,12 +1,10 @@
 import { FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { resentFileArrayAtom } from "./main";
+import { getAnswerXML, resentFileArrayAtom } from "./main";
 
 export default function AnswerChoices({ index }: { index: number }) {
-  const [resentFileArray, setRecentFileArray] = useRecoilState(resentFileArrayAtom);
-  console.log(resentFileArray)
-  const [answerXML, setAnswerXML] = useState<Element>(resentFileArray[index].getElementsByTagName("answer")[0]);
+  const [answerXML, setAnswerXML] = useState<Element>(getAnswerXML(index));
   const choices = Array.from(answerXML.getElementsByTagName("choice"));
   const answerIndex = choices.findIndex(
     (choice) => choice.getAttribute("answer") === "true"

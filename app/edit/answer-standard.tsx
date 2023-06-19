@@ -1,11 +1,9 @@
 import { TextField } from "@mui/material";
 import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { resentFileArrayAtom } from "./main";
+import { getAnswerXML } from "./main";
 
 export default function AnswerStandard({ index }: { index: number }) {
-    const [resentFileArray, setRecentFileArray] = useRecoilState(resentFileArrayAtom);
-  const [answerXML, setAnswerXML] = useState<Element>(resentFileArray[index].getElementsByTagName("answer")[0]);
+  const [answerXML, setAnswerXML] = useState<Element>(getAnswerXML(index));
   return (
     <TextField
       className="w-full"

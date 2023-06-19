@@ -1,11 +1,7 @@
-import { FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material";
-import React, { useState } from "react";
 import AnswerStandard from "./answer-standard";
 import AnswerChoices from "./answer-choices";
 import AnswerHole from "./answer-hole";
 import AnswerSorting from "./answer-sorting";
-import { useRecoilState } from "recoil";
-import { resentFileArrayAtom } from "./main";
 
 export default function Answer({
   index,
@@ -13,9 +9,7 @@ export default function Answer({
 }: {
   index: number;
   type: "standard" | "hold" | "choices" | "sorting";
-  }) {
-  const [resentFileArray, setRecentFileArray] = useRecoilState(resentFileArrayAtom);
-  const [answerXML, setAnswerXML] = useState<Element>(resentFileArray[index].getElementsByTagName("answer")[0]);
+}) {
   return (
     <>
       {(() => {
