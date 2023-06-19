@@ -1,7 +1,7 @@
 "use client";
 
 import { MenuItem, Select, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { FormControl, InputLabel } from "@mui/material";
 import Answer from "./answer";
 import { resentFileArrayAtom } from "./main";
@@ -20,17 +20,6 @@ export default function Quiz({
   const [QuizType, setQuizType] = useState<
     "standard" | "hold" | "choices" | "sorting"
   >(type);
-  // useEffect(() => {
-  //   console.log("resentFileArray update")
-  //   setRecentFileArray((resentFileArray) => {
-  //     const newFileArray = [...resentFileArray];
-  //     console.log(index);
-  //     console.log(newFileArray[index]);
-  //     newFileArray[index] = quizXML;
-  //     console.log(newFileArray);
-  //     return newFileArray;
-  //   });
-  // }, [quizXML]);
   const handleChange = (event) => {
     setQuizType(event.target.value);
   };

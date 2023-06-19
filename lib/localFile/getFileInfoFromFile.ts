@@ -1,17 +1,32 @@
+"use client";
 import { fileInfoType, savedPlaceType } from "../filesInfo";
-import { xmlFileToJson } from "./xmlFileToJson";
+
 export async function getFileInfoFromFile(
-  stringFile: string,
+  file: string | Element,
   fileName: string,
   savedPlace: savedPlaceType
 ) {
-  if(!stringFile) throw new Error("stringFile is empty")
-  const jsonFile: any = xmlFileToJson(stringFile);
-  const fileID: string = jsonFile?.quizexam?.["@_fileID"] || null;
-  const createdDate: Date = new Date(jsonFile.quizexam?.["@_createdDate"]||null);
-  const lastUpdatedDate: Date = new Date(
-    jsonFile.quizexam?.["@_lastUpdatedDate"]||null
+  if (!file) throw new Error("stringFile is empty");
+  const xmlFile =
+    typeof file == "string"
+      ? new DOMParser().parseFromString(file, "text/xml")
+      : file;
+  console.log(xmlFile);
+  const fileID: string =
+    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["fileID"] || "";
+  const createdDate: Date = new Date(
+    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["createdDate"] ||
+      null
   );
+  const lastUpdatedDate: Date = new Date(
+    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.[
+      "lastUpdatedDate"
+    ] || null
+  );
+  const stringFile: string =
+    typeof file == "string"
+      ? file
+      : new XMLSerializer().serializeToString(xmlFile);
   const fileInfo: fileInfoType = {
     ID: fileID,
     createdDate,
