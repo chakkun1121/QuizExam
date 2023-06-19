@@ -5,11 +5,12 @@ export async function getFileInfoFromFile(
   fileName: string,
   savedPlace: savedPlaceType
 ) {
+  if(!stringFile) throw new Error("stringFile is empty")
   const jsonFile: any = xmlFileToJson(stringFile);
-  const fileID: string = jsonFile.quizexam["@_fileID"];
-  const createdDate: Date = new Date(jsonFile.quizexam["@_createdDate"]);
+  const fileID: string = jsonFile?.quizexam?.["@_fileID"] || null;
+  const createdDate: Date = new Date(jsonFile.quizexam?.["@_createdDate"]||null);
   const lastUpdatedDate: Date = new Date(
-    jsonFile.quizexam["@_lastUpdatedDate"]
+    jsonFile.quizexam?.["@_lastUpdatedDate"]||null
   );
   const fileInfo: fileInfoType = {
     ID: fileID,

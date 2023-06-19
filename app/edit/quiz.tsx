@@ -20,16 +20,17 @@ export default function Quiz({
   const [QuizType, setQuizType] = useState<
     "standard" | "hold" | "choices" | "sorting"
   >(type);
-  useEffect(() => {
-    setRecentFileArray((resentFileArray) => {
-      const newFileArray = [...resentFileArray];
-      console.log(index);
-      console.log(newFileArray[index]);
-      newFileArray[index] = quizXML;
-      console.log(newFileArray);
-      return newFileArray;
-    });
-  }, [quizXML]);
+  // useEffect(() => {
+  //   console.log("resentFileArray update")
+  //   setRecentFileArray((resentFileArray) => {
+  //     const newFileArray = [...resentFileArray];
+  //     console.log(index);
+  //     console.log(newFileArray[index]);
+  //     newFileArray[index] = quizXML;
+  //     console.log(newFileArray);
+  //     return newFileArray;
+  //   });
+  // }, [quizXML]);
   const handleChange = (event) => {
     setQuizType(event.target.value);
   };
@@ -38,6 +39,14 @@ export default function Quiz({
     setQuizXML(() => {
       quizXML.getElementsByTagName("problem")[0].innerHTML = e.target.value;
       return quizXML;
+    });
+    setRecentFileArray((resentFileArray) => {
+      const newFileArray = [...resentFileArray];
+      console.log(index);
+      console.log(newFileArray[index]);
+      newFileArray[index] = quizXML;
+      console.log(newFileArray);
+      return newFileArray;
     });
   }
   return (

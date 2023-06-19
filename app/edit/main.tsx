@@ -31,8 +31,14 @@ export default function EditMain({ fileID }: { fileID: string }) {
       ).createdDate;
       const nowDate = new Date();
       console.log(createdDate);
-      // const resentFileXML = Array.from(resentFileArray).map((quizXML) => {
-      // }
+      const resentFileXML = new DOMParser().parseFromString(`
+      <quizexam fileID="${fileID}" createdDate="${createdDate}" lastUpdatedDate="${nowDate}">
+        ${Array.from(resentFileArray)
+        .map((quizXML) => quizXML.outerHTML)
+        .join("")}    
+      </quizexam>
+      `, "text/xml");
+      console.log(resentFileXML);
     }
     a();
   }, [resentFileArray]);
