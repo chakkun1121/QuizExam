@@ -23,17 +23,13 @@ export default function Quiz({
     setQuizType(event.target.value);
   };
   function saveChange(e: React.ChangeEvent<HTMLInputElement>): undefined {
-    console.log(e.target.value);
     setQuizXML(() => {
       quizXML.getElementsByTagName("problem")[0].innerHTML = e.target.value;
       return quizXML;
     });
     setRecentFileArray((resentFileArray) => {
       const newFileArray = [...resentFileArray];
-      console.log(index);
-      console.log(newFileArray[index]);
       newFileArray[index] = quizXML;
-      console.log(newFileArray);
       return newFileArray;
     });
   }

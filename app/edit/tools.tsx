@@ -19,6 +19,8 @@ export default function Tools({ fileID }: { fileID: string }) {
       const cashedResentFileArray = [...resentFileArray];
       const newQuizXML = new Document().createElement("quiz");
       newQuizXML.setAttribute("quizID", `quiz-${createUUID()}`);
+      newQuizXML.appendChild(new Document().createElement("problem"));
+      newQuizXML.appendChild(new Document().createElement("answer"));
       cashedResentFileArray.push(newQuizXML);
       return cashedResentFileArray;
     });

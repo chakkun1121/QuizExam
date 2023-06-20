@@ -11,7 +11,6 @@ export async function getFileInfoFromFile(
     typeof file == "string"
       ? new DOMParser().parseFromString(file, "text/xml")
       : file;
-  console.log(xmlFile);
   const fileID: string =
     xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["fileID"] || "";
   const createdDate: Date = new Date(

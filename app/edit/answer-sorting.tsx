@@ -7,7 +7,6 @@ export default function AnswerSorting({ index }: { index: number }) {
     answerXML?.innerHTML.split(/\<sort\>|\<\/sort\>/).map((answer) => {
       return answer.match(/^(\s| |　)*$/) ? null : answer;
     }) || [];
-  console.log(answerArray);
   return (
     <>
       <p contentEditable>
