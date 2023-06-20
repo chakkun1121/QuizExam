@@ -1,44 +1,77 @@
-import { FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material";
+"use client";
 import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { getAnswerXML, resentFileArrayAtom } from "./main";
+import { getAnswerXML } from "./main";
+import { IconButton, Input, Radio, RadioGroup, Stack } from "@chakra-ui/react";
+import { AddIcon, DeleteIcon } from "@chakra-ui/icons";
 
 export default function AnswerChoices({ index }: { index: number }) {
   const [answerXML, setAnswerXML] = useState<Element>(getAnswerXML(index));
-  const choices = Array.from(answerXML.getElementsByTagName("choice"));
-  const answerIndex = choices.findIndex(
-    (choice) => choice.getAttribute("answer") === "true"
+  const [choices, setChoices] = useState<Array<Element>>(
+    Array.from(answerXML?.getElementsByTagName("choice") || [])
   );
+  const [answerIndex, setAnswerIndex] = useState<string>(
+    choices
+      .findIndex((choice) => choice.getAttribute("answer") === "true")
+      ?.toString() || "0"
+  );
+  function changeChoice(i: number, event: React.ChangeEvent<HTMLInputElement>) {
+    setChoices((choices) => {
+      const newChoices = [...choices];
+      newChoices[i].innerHTML = event.target.value;
+      return newChoices;
+    });
+  }
+  function addChoice() {
+    setChoices((choices) => {
+      const newChoices = [...choices];
+      const newChoice = new Document().createElement("choice");
+      newChoice.innerHTML = "選択肢";
+      newChoices.push(newChoice);
+      return newChoices;
+    });
+  }
+  function deleteChoice(i: number) {
+    setChoices((choices) => {
+      const newChoices = [...choices];
+      newChoices.splice(i, 1);
+      return newChoices;
+    });
+  }
   return (
-    <div className="flex">
-      <RadioGroup defaultValue={answerIndex || 0}>
-        {choices.map((_, i) => {
-          return (
-            <FormControlLabel
-              key={"radio" + i}
-              value={i}
-              control={<Radio />}
-              label=""
-            />
-          );
-        })}
+    <>
+      <RadioGroup value={answerIndex || "0"} onChange={setAnswerIndex}>
+        <Stack>
+          {choices.map((content: Element, i) => {
+            return (
+              <div className="flex">
+                <Radio
+                  key={"radio" + i}
+                  value={i.toString()}
+                  className="m-2 flex-auto"
+                ></Radio>
+                <Input
+                  className="flex-1"
+                  placeholder={`選択肢`}
+                  value={content.innerHTML}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    changeChoice(i, event)
+                  }
+                />
+                <IconButton
+                  aria-label="選択肢を消去"
+                  className="flex-none"
+                  onClick={() => deleteChoice(i)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </div>
+            );
+          })}
+        </Stack>
       </RadioGroup>
-      <div className="w-full flex-1">
-        {choices.map((choice, i) => {
-          return (
-            <>
-              <TextField
-                key={"edit" + i}
-                className="w-full"
-                id={"answer" + i}
-                label={"選択肢" + (i + 1)}
-                variant="standard"
-                defaultValue={choice.innerHTML}
-              />
-            </>
-          );
-        })}
-      </div>
-    </div>
+      <IconButton aria-label="選択肢を追加" onClick={addChoice}>
+        <AddIcon />
+      </IconButton>
+    </>
   );
 }

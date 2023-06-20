@@ -1,14 +1,12 @@
-import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { getAnswerXML, resentFileArrayAtom } from "./main";
+import { getAnswerXML } from "./main";
 
 export default function AnswerSorting({ index }: { index: number }) {
   const [answerXML, setAnswerXML] = useState<Element>(getAnswerXML(index));
-  const answerArray = answerXML.innerHTML
-    .split(/\<sort\>|\<\/sort\>/)
-    .map((answer) => {
+  const answerArray =
+    answerXML?.innerHTML.split(/\<sort\>|\<\/sort\>/).map((answer) => {
       return answer.match(/^(\s| |　)*$/) ? null : answer;
-    });
+    }) || [];
   console.log(answerArray);
   return (
     <>

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Header from "./header";
 import Footer from "./footer";
+import { Button } from "@chakra-ui/react";
 
 export default function Error({
   error,
@@ -19,17 +20,19 @@ export default function Error({
   return (
     <>
       <Header />
-      <main>
+      <main className="m-1">
         <h2>エラーが発生しました。</h2>
-        <button
-          onClick={
-            // Attempt to recover by trying to re-render the segment
-            () => reset()
-          }
-        >
-          リトライ
-        </button>
-        <a>フィードバックを送信する</a>
+        <div>
+          <Button
+            onClick={
+              // Attempt to recover by trying to re-render the segment
+              () => reset()
+            }
+          >
+            リトライ
+          </Button>
+          <a>フィードバックを送信する</a>
+        </div>
         <details>
           <summary>エラーの詳細</summary>
           <pre>{error.message}</pre>

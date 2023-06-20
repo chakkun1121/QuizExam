@@ -50,7 +50,7 @@ export default function EditMain({ fileID }: { fileID: string }) {
           <Quiz
             key={quizXML.attributes["quizID"].value}
             index={i}
-            type={quizXML.attributes["type"].value}
+            type={quizXML.attributes["type"]?.value}
           />
         );
       })}

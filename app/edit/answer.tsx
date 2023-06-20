@@ -8,7 +8,7 @@ export default function Answer({
   type,
 }: {
   index: number;
-  type: "standard" | "hold" | "choices" | "sorting";
+  type: "standard" | "hold" | "choices" | "sorting" | null;
 }) {
   return (
     <>
@@ -22,6 +22,8 @@ export default function Answer({
             return <AnswerHole index={index} />;
           case "sorting":
             return <AnswerSorting index={index} />;
+          default:
+            return <p>形式を選択してください。</p>;
         }
       })()}
     </>

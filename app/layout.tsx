@@ -1,4 +1,5 @@
 import GoogleAnalytics from "./GoogleAnalytics";
+import { ChakraUIRoot } from "./chakra-ui";
 import "./globals.scss";
 import { Recoil } from "./recoil";
 
@@ -22,7 +23,9 @@ export default function RootLayout({
     <html lang="ja">
       <GoogleAnalytics />
       <Recoil>
-        <body>{children}</body>
+        <ChakraUIRoot>
+          <body>{children}</body>
+        </ChakraUIRoot>
       </Recoil>
     </html>
   );

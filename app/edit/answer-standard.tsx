@@ -1,16 +1,16 @@
-import { TextField } from "@mui/material";
+"use client";
 import { useState } from "react";
 import { getAnswerXML } from "./main";
+import { Input } from "@chakra-ui/react";
 
 export default function AnswerStandard({ index }: { index: number }) {
   const [answerXML, setAnswerXML] = useState<Element>(getAnswerXML(index));
   return (
-    <TextField
+    <Input
       className="w-full"
       id="answer"
-      label="答え"
-      variant="standard"
-      defaultValue={answerXML.innerHTML}
+      placeholder="答え"
+      defaultValue={answerXML?.innerHTML}
     />
   );
 }
