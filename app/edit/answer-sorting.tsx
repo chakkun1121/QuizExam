@@ -1,5 +1,5 @@
-import { useRecoilState } from "recoil";
 import { getAnswerXML } from "./main";
+import { useState } from "react";
 
 export default function AnswerSorting({ index }: { index: number }) {
   const [answerXML, setAnswerXML] = useState<Element>(getAnswerXML(index));
