@@ -30,7 +30,7 @@ export interface filesInfoType {
       createdDate: Date;
       lastUpdatedDate: Date;
       content: string;
-      savedPlace: string;
+      savedPlace: savedPlaceType;
     }
   ];
 }

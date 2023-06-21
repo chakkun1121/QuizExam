@@ -12,20 +12,21 @@ export async function getFileInfoFromFile(
       ? new DOMParser().parseFromString(file, "text/xml")
       : file;
   const fileID: string =
-    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["fileID"] || "";
+    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["fileID"]?.value || "";
   const createdDate: Date = new Date(
-    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["createdDate"] ||
+    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["createdDate"]?.value ||
       null
   );
   const lastUpdatedDate: Date = new Date(
     xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.[
       "lastUpdatedDate"
-    ] || null
+    ]?.value || null
   );
   const stringFile: string =
     typeof file == "string"
       ? file
       : new XMLSerializer().serializeToString(xmlFile);
+  console.log( createdDate, lastUpdatedDate, stringFile, fileName)
   const fileInfo: fileInfoType = {
     ID: fileID,
     createdDate,
