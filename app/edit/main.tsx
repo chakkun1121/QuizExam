@@ -49,6 +49,7 @@ export default function EditMain({ fileID }: { fileID: string }) {
         console.log( resentFileXML.documentElement.outerHTML)
         cashFilesInfoArray[targetIndex] = {
           ...cashFilesInfoArray[targetIndex],
+          lastUpdatedDate: nowDate,
           content: resentFileXML.documentElement.outerHTML
         }
         return { files: [...cashFilesInfoArray] };
