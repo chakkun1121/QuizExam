@@ -64,9 +64,9 @@ export default function EditMain({ fileID }: { fileID: string }) {
       {resentFileArray.map((quizXML: Element, i: number) => {
         return (
           <Quiz
-            key={quizXML.attributes["quizID"].value}
+            key={quizXML?.attributes["quizID"]?.value}
             index={i}
-            type={quizXML.attributes["type"].value}
+            type={quizXML?.attributes["type"]?.value}
           />
         );
       })}
