@@ -1,28 +1,21 @@
 "use client";
-import { useState } from "react";
-import { IconButton, Input, Radio, RadioGroup, Stack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
 import { getAnswerXML } from "../edit/main";
+import { useRecoilState } from "recoil";
+import { currentAnswerAtom } from "./main";
 
-export default function AnswerChoices({ index }: { index: number }) {
+export default function AnswerChoices({ index, quizID }: { index: number, quizID: string }) {
+  const [currentAnswer, setCurrentAnswer] = useRecoilState<Object>(currentAnswerAtom);
   const [answerXML] = useState<Element>(getAnswerXML(index));
-  const [choices, setChoices] = useState<Array<Element>>(
-    Array.from(answerXML?.getElementsByTagName("choice") || [])
-  );
-  const [answerIndex, setAnswerIndex] = useState<string>(
-    choices
-      .findIndex((choice) => choice.getAttribute("answer") === "true")
-      ?.toString() || "0"
-  );
-  function changeChoice(i: number, event: React.ChangeEvent<HTMLInputElement>) {
-    setChoices((choices) => {
-      const newChoices = [...choices];
-      newChoices[i].innerHTML = event.target.value;
-      return newChoices;
-    });
-  }
+  const choices: Array<Element> = (Array.from(answerXML?.getElementsByTagName("choice") || []));
+  const [answerIndex, setAnswerIndex] = useState<number>(currentAnswer[quizID] || null);
+  useEffect(() => {
+    setCurrentAnswer({ ...currentAnswer, [quizID]: answerIndex })
+  }, [answerIndex])
   return (
     <>
-      <RadioGroup value={answerIndex || "0"} onChange={setAnswerIndex}>
+      <RadioGroup value={answerIndex?.toString()} onChange={(value)=>{setAnswerIndex(Number(value))}}>
         <Stack>
           {choices.map((content: Element, i) => {
             return (
@@ -30,16 +23,10 @@ export default function AnswerChoices({ index }: { index: number }) {
                 <Radio
                   key={"radio" + i}
                   value={i.toString()}
-                  className="m-2 flex-auto"
-                ></Radio>
-                <Input
-                  className="flex-1"
-                  placeholder={`選択肢`}
-                  value={content.innerHTML}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                    changeChoice(i, event)
-                  }
-                />
+                  className="m-2 flex-1"
+                >
+                  {content.innerHTML}
+                </Radio>
               </div>
             );
           })}

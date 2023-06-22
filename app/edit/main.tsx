@@ -30,7 +30,6 @@ export default function EditMain({ fileID }: { fileID: string }) {
         await getFileInfoFromFile(fileID, xmlFile.toString(), "local")
       ).createdDate;
       const nowDate = new Date();
-      console.log(createdDate);
       const resentFileXML = new DOMParser().parseFromString(`
       <quizexam fileID="${fileID}" createdDate="${createdDate}" lastUpdatedDate="${nowDate}">
         ${Array.from(resentFileArray)
@@ -38,15 +37,12 @@ export default function EditMain({ fileID }: { fileID: string }) {
           .join("")}    
       </quizexam>
       `, "text/xml");
-      console.log(resentFileXML);
       setFilesInfo((filesInfo: filesInfoType) => {
         const files = filesInfo.files;
         const cashFilesInfoArray: Array<fileInfoType> = [...files];
-        console.log(cashFilesInfoArray)
         const targetIndex = cashFilesInfoArray.findIndex(
           (fileInfo: fileInfoType) => fileInfo.ID === fileID
         );
-        console.log( resentFileXML.documentElement.outerHTML)
         cashFilesInfoArray[targetIndex] = {
           ...cashFilesInfoArray[targetIndex],
           lastUpdatedDate: nowDate,
@@ -58,7 +54,6 @@ export default function EditMain({ fileID }: { fileID: string }) {
     }
     a();
   }, [resentFileArray]);
-  console.log(resentFileArray);
   return (
     <>
       {resentFileArray.map((quizXML: Element, i: number) => {

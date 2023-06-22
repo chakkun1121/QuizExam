@@ -26,7 +26,6 @@ export async function getFileInfoFromFile(
     typeof file == "string"
       ? file
       : new XMLSerializer().serializeToString(xmlFile);
-  console.log( createdDate, lastUpdatedDate, stringFile, fileName)
   const fileInfo: fileInfoType = {
     ID: fileID,
     createdDate,

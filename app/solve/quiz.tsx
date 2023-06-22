@@ -13,11 +13,9 @@ export default function Quiz({
     useRecoilState<Array<Element>>(resentFileArrayAtom);
   const quizXML = resentFileArray[index];
   const problem = quizXML.getElementsByTagName("problem")[0]?.innerHTML;
-  const answerXML = quizXML.getElementsByTagName("answer")[0];
-  const answerType=quizXML.getElementsByTagName("quiz")[0]?.getAttribute("type")
-  console.log(quizXML)
+  const answerType=quizXML.getAttribute("type")||null
   return (
-    <div className="m-2 flex rounded bg-blue-300 p-2">
+    <div className="m-2 rounded bg-blue-300 p-2">
       <div>
         <h2>{ ( '000' + (index+1) ).slice( -3 )}:{problem}</h2>
       </div>

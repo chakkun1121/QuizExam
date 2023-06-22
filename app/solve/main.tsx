@@ -13,12 +13,13 @@ export const isShowAnswerAtom = atom<boolean>({
   key: "isShowAnswer",
   default: false,
 });
+export const currentAnswerAtom = atom<Object>({
+  key: "currentAnswer",
+  default: {},
+});
 export default function SolveMain({ fileID }: { fileID: string }) {
-  console.log("a");
   const [filesInfo] = useRecoilState(filesInfoState);
-  console.log(filesInfo)
   const resentFileXML = new DOMParser().parseFromString((filesInfo?.files?.find((fileInfo: fileInfoType) => fileInfo.ID === fileID) || {}).content || "", "text/xml")
-  console.log(resentFileXML)
   const [resentFileArray, setRecentFileArray] = useRecoilState<Array<Element>>(resentFileArrayAtom);
   useEffect(() => {
     setRecentFileArray(Array.from(resentFileXML.getElementsByTagName("quiz")));
