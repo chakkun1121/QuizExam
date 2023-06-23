@@ -13,11 +13,12 @@ export default function AnswerHole({ index }: { index: number }) {
     }) || [];
   return (
     <>
-      <p contentEditable>
+      {/* <p contentEditable>
         {answerArray.map((answer, i) => {
           return i % 2 === 0 ? answer : <Hole>{answer}</Hole>;
         })}
-      </p>
+      </p> */}
+      <p>申し訳ございませんが、穴埋め形式は未実装です。</p>
     </>
   );
 }

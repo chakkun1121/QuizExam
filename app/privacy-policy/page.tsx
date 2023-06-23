@@ -1,5 +1,3 @@
-import Footer from "../footer";
-import Header from "../header";
 import PrivacyPolicy from "./main";
 export const metadata = {
   title: "プライバシーポリシー | QuizExam | chakkun1121",
@@ -7,11 +5,9 @@ export const metadata = {
 export default function PrivacyPolicyPages() {
   return (
     <>
-      <Header />
-      <main className="flex justify-center flex-col mx-auto p-1 max-w-3xl">
+      <section className="mx-auto flex max-w-3xl flex-col justify-center p-1">
         <PrivacyPolicy />
-      </main>
-      <Footer />
+      </section>
     </>
   );
 }

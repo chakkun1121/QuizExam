@@ -1,5 +1,3 @@
-import Footer from "../footer";
-import Header from "../header";
 import SolveMain from "./main";
 export const metadata = {
   title: "解答画面 | QuizExam | chakkun1121",
@@ -11,9 +9,7 @@ export default function SolveHome(pageProps: {
   const fileID: string = pageProps.searchParams.testId;
   return (
     <>
-      <Header />
       <SolveMain fileID={fileID} />
-      <Footer />
     </>
   );
 }

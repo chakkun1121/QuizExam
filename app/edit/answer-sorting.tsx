@@ -9,11 +9,12 @@ export default function AnswerSorting({ index }: { index: number }) {
     }) || [];
   return (
     <>
-      <p contentEditable>
+      {/* <p contentEditable>
         {answerArray.map((answer, i) => {
           return i % 2 === 0 ? answer : <Sort>{answer}</Sort>;
         })}
-      </p>
+      </p> */}
+      <p>申し訳ございませんが並び替え形式は未実装です。</p>
     </>
   );
 }

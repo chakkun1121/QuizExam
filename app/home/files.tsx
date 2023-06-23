@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
 import { getFileInfoFromFile } from "../../lib/localFile/getFileInfoFromFile";
 import { showFilePicker } from "../../lib/localFile/uploadFile";
+import LinkButton from "../_components/linkButton";
 
 export default function Files() {
   const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);
@@ -49,9 +50,9 @@ export default function Files() {
     <section>
       <div className="flex">
         <h2 className="flex-1 text-2xl">ファイル一覧</h2>
-        <Link className="flex-none" href="/edit">
+        <LinkButton className="flex-none" href="/edit">
           新規作成
-        </Link>
+        </LinkButton>
         <button className="flex-none" onClick={uploadFile}>
           ローカルファイルを開く
         </button>
