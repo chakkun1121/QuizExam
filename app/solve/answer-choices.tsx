@@ -36,7 +36,6 @@ export default function AnswerChoices({
   useEffect(() => {
     setCurrentAnswer({ ...currentAnswer, [quizID]: answerIndex });
   }, [currentAnswerIndex]);
-  console.log(currentAnswer);
   return (
     <>
       <RadioGroup

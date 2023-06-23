@@ -17,7 +17,6 @@ export default function Tools({ fileID }: { fileID: string }) {
   const currentFileIndex: number = filesInfo?.files?.findIndex(
     (fileInfo: fileInfoType) => fileInfo.ID === fileID
   );
-  console.log(filesInfo?.[currentFileIndex]);
   function addQuiz() {
     setRecentFileArray((resentFileArray) => {
       const cashedResentFileArray = [...resentFileArray];
@@ -40,13 +39,11 @@ export default function Tools({ fileID }: { fileID: string }) {
           }
           placeholder="テスト名を入力"
           onChange={(e) => {
-            console.log(e.target.value);
             setFilesInfo((filesInfo: filesInfoType) => {
               const cashedCurrentFileInfo = {
                 ...filesInfo.files[currentFileIndex],
               };
               cashedCurrentFileInfo.name = e.target.value;
-              console.log(cashedCurrentFileInfo);
               return {
                 files: filesInfo.files.map((fileInfo: fileInfoType, i) =>
                   i === currentFileIndex ? cashedCurrentFileInfo : fileInfo
