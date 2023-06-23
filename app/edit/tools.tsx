@@ -45,7 +45,7 @@ export default function Tools({ fileID }: { fileID: string }) {
               };
               cashedCurrentFileInfo.name = e.target.value;
               return {
-                files: filesInfo.files.map((fileInfo: fileInfoType, i) =>
+                files: filesInfo.files.map((fileInfo: fileInfoType, i:number) =>
                   i === currentFileIndex ? cashedCurrentFileInfo : fileInfo
                 ),
               };

@@ -1,6 +1,10 @@
 "use client";
 import { useRecoilState } from "recoil";
-import { filesInfoState, fileInfoType, filesInfoType } from "../../lib/filesInfo";
+import {
+  filesInfoState,
+  fileInfoType,
+  filesInfoType,
+} from "../../lib/filesInfo";
 import { atom } from "recoil";
 import Quiz from "./quiz";
 import { useEffect } from "react";
@@ -30,27 +34,40 @@ export default function EditMain({ fileID }: { fileID: string }) {
         await getFileInfoFromFile(fileID, xmlFile.toString(), "local")
       ).createdDate;
       const nowDate = new Date();
-      const resentFileXML = new DOMParser().parseFromString(`
+      const resentFileXML = new DOMParser().parseFromString(
+        `
       <quizexam fileID="${fileID}" createdDate="${createdDate}" lastUpdatedDate="${nowDate}">
         ${Array.from(resentFileArray)
           .map((quizXML: Element) => quizXML.outerHTML)
           .join("")}    
       </quizexam>
-      `, "text/xml");
+      `,
+        "text/xml"
+      );
       setFilesInfo((filesInfo: filesInfoType) => {
         const files = filesInfo.files;
         const cashFilesInfoArray: Array<fileInfoType> = [...files];
         const targetIndex = cashFilesInfoArray.findIndex(
           (fileInfo: fileInfoType) => fileInfo.ID === fileID
         );
-        cashFilesInfoArray[targetIndex] = {
-          ...cashFilesInfoArray[targetIndex],
-          lastUpdatedDate: nowDate,
-          content: resentFileXML.documentElement.outerHTML
+        if (targetIndex == -1) {
+          cashFilesInfoArray.push({
+            ID: fileID,
+            createdDate: nowDate,
+            lastUpdatedDate: nowDate,
+            content: resentFileXML.documentElement.outerHTML,
+            name: "無題のテスト",
+            savedPlace: "local",
+          });
+        } else {
+          cashFilesInfoArray[targetIndex] = {
+            ...cashFilesInfoArray[targetIndex],
+            lastUpdatedDate: nowDate,
+            content: resentFileXML.documentElement.outerHTML,
+          };
         }
         return { files: [...cashFilesInfoArray] };
-
-      })
+      });
     }
     a();
   }, [resentFileArray]);
