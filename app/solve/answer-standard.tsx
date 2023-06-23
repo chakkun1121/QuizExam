@@ -18,8 +18,6 @@ export default function AnswerStandard({
     useRecoilState<Object>(currentAnswerAtom);
   const [isShowAnswer] = useRecoilState<boolean>(isShowAnswerAtom);
   const answer = answerXML.innerHTML;
-  console.log(answer);
-  console.log(isShowAnswer);
   return (
     <div className="flex">
       <div className="flex-none">
