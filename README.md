@@ -48,11 +48,11 @@ achievement.json
       [
         {
           "date": "2022/6/1",
-          "detail":[
+          "detail":{
             "quiz-xxxx-xxxxxx-xxxxxx-xxxx":{
               "correct":true,
             }
-          ]
+          }
         }
       ]
     }
