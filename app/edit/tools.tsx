@@ -1,19 +1,23 @@
 "use client";
 import { useRecoilState } from "recoil";
-import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
+import {
+  filesInfoState,
+  fileInfoType,
+  filesInfoType,
+} from "../../lib/filesInfo";
 import { Input, IconButton } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { v4 as createUUID } from "uuid";
 import { resentFileArrayAtom } from "./main";
 
 export default function Tools({ fileID }: { fileID: string }) {
-  const [filesInfo] = useRecoilState(filesInfoState);
-  const [resentFileArray, setRecentFileArray] =
+  const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);
+  const [_, setRecentFileArray] =
     useRecoilState<Array<Element>>(resentFileArrayAtom);
-  const fileInfo =
-    filesInfo?.files?.find(
-      (fileInfo: fileInfoType) => fileInfo.ID === fileID
-    ) || {};
+  const currentFileIndex: number = filesInfo?.files?.findIndex(
+    (fileInfo: fileInfoType) => fileInfo.ID === fileID
+  );
+  console.log(filesInfo?.[currentFileIndex]);
   function addQuiz() {
     setRecentFileArray((resentFileArray) => {
       const cashedResentFileArray = [...resentFileArray];
@@ -31,8 +35,25 @@ export default function Tools({ fileID }: { fileID: string }) {
         <Input
           className="flex-1"
           id="filled-basic"
-          value={fileInfo?.name || "無題のテスト"}
+          defaultValue={
+            filesInfo?.files?.[currentFileIndex]?.name || "無題のテスト"
+          }
           placeholder="テスト名を入力"
+          onChange={(e) => {
+            console.log(e.target.value);
+            setFilesInfo((filesInfo: filesInfoType) => {
+              const cashedCurrentFileInfo = {
+                ...filesInfo.files[currentFileIndex],
+              };
+              cashedCurrentFileInfo.name = e.target.value;
+              console.log(cashedCurrentFileInfo);
+              return {
+                files: filesInfo.files.map((fileInfo: fileInfoType, i) =>
+                  i === currentFileIndex ? cashedCurrentFileInfo : fileInfo
+                ),
+              };
+            });
+          }}
         />
       </div>
       <div className="flex flex-none">
