@@ -21,6 +21,9 @@ export const currentAnswerAtom = atom<Object>({
 export default function SolveMain({ fileID }: { fileID: string }) {
   const [filesInfo] = useRecoilState(filesInfoState);
   const [isShowAnswer, setIsShowAnswer] = useRecoilState(isShowAnswerAtom);
+  useEffect(() => {
+    setIsShowAnswer(false);
+  }, []);
   const resentFileXML = new DOMParser().parseFromString(
     (
       filesInfo?.files?.find(
