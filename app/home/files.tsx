@@ -13,7 +13,7 @@ export default function Files() {
     if (!FileSystemFileHandle) return;
     const file = await FileSystemFileHandle?.getFile();
     const fileContent = await file.text();
-    const fileName = FileSystemFileHandle.name;
+    const fileName = FileSystemFileHandle.name.replace(".quizexam.xml", "");
     const fileInfo: fileInfoType = await getFileInfoFromFile(
       fileContent,
       fileName,
