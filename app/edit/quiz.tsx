@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Answer from "./answer";
 import { resentFileArrayAtom } from "./main";
 import { useRecoilState } from "recoil";
@@ -41,6 +41,13 @@ export default function Quiz({
       return newFileArray;
     });
   }
+  useEffect(() => {
+    setRecentFileArray((resentFileArray) => {
+      const newFileArray = [...resentFileArray];
+      newFileArray[index].setAttribute("type", QuizType);
+      return newFileArray;
+    });
+  }, [QuizType]);
   return (
     <div className="m-2 flex rounded bg-blue-300 p-2">
       <div className="flex-1">
