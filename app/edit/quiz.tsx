@@ -5,8 +5,7 @@ import Answer from "./answer";
 import { resentFileArrayAtom } from "./main";
 import { useRecoilState } from "recoil";
 import { Input, Select, IconButton } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
-
+import { RiDeleteBinFill } from "react-icons/ri";
 export default function Quiz({
   index,
   type,
@@ -87,7 +86,7 @@ export default function Quiz({
       </div>
       <div className="flex-none">
         <IconButton aria-label="問題を削除" onClick={deleteQuiz}>
-          <DeleteIcon />
+          <RiDeleteBinFill />
         </IconButton>
       </div>
     </div>

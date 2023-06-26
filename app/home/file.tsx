@@ -2,9 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { fileInfoType } from "../../lib/filesInfo";
+import { fileInfoType, filesInfoState } from "../../lib/filesInfo";
+import { Button } from "@chakra-ui/react";
+import { downloadFile } from "../../lib/download";
+import { useRecoilState } from "recoil";
 
 export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
+  const [filesInfo] = useRecoilState(filesInfoState);
   const savedPlaceJapanese = (() => {
     switch (fileInfo.savedPlace) {
       case "local":
@@ -45,6 +49,9 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
           <LinkButton href={`/solve?testId=${fileInfo.ID}`}>
             回答する
           </LinkButton>
+          <Button onClick={() => downloadFile(fileInfo.ID, filesInfo)}>
+            ダウンロード
+          </Button>
         </div>
       </div>
     </div>
