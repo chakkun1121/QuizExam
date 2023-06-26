@@ -29,7 +29,7 @@ export default function AnswerChoices({ index }: { index: number }) {
     setChoices((choices) => {
       const newChoices = [...choices];
       const newChoice = new Document().createElement("choice");
-      newChoice.innerHTML = "選択肢";
+      newChoice.innerHTML = "";
       newChoices.push(newChoice);
       return newChoices;
     });
