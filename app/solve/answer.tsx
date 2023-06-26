@@ -38,10 +38,10 @@ export default function Answer({
             case "sorting":
               return <AnswerSorting index={index} quizID={quizID} />;
             default:
-              return <p>形式を選択してください。</p>;
+              return <p>ファイル本体の回答形式が選択されていません。</p>;
           }
         })()}
-      </div>{" "}
+      </div>
     </>
   );
 }
