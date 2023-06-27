@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { fileInfoType, filesInfoState } from "../../lib/filesInfo";
-import { Button } from "@chakra-ui/react";
 import { downloadFile } from "../../lib/download";
 import { useRecoilState } from "recoil";
 
@@ -21,7 +20,7 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
   })();
   return (
     <div className="m-1 flex-none rounded bg-blue-400 p-2">
-      <div className="flex">
+      <div className="flex items-center">
         <div className="flex-none p-1">
           <Image
             width={48}
@@ -30,8 +29,8 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
             alt={`${savedPlaceJapanese}ファイル`}
           />
         </div>
-        <div className="max-w-full flex-1">
-          <h1 className="truncate text-4xl">{fileInfo.name}</h1>
+        <div className="max-w-full flex-auto  truncate text-4xl">
+          {fileInfo.name}
         </div>
       </div>
       <div className="flex">
@@ -49,9 +48,12 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
           <LinkButton href={`/solve?testId=${fileInfo.ID}`}>
             回答する
           </LinkButton>
-          <Button onClick={() => downloadFile(fileInfo.ID, filesInfo)}>
+          <button
+            onClick={() => downloadFile(fileInfo.ID, filesInfo)}
+            className="m-2 rounded border border-black bg-blue-600 p-2 text-white"
+          >
             ダウンロード
-          </Button>
+          </button>
         </div>
       </div>
     </div>
