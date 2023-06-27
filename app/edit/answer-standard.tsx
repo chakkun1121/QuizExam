@@ -14,7 +14,7 @@ export default function AnswerStandard({ index }: { index: number }) {
       id="answer"
       placeholder="答え"
       defaultValue={answerXML?.innerHTML}
-      // onchangeを追加する
+      autoComplete="off"
       onChange={(e) => {
         setRecentFileArray(() => {
           const answerXML: Element = new DOMParser().parseFromString(

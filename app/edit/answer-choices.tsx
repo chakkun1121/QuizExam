@@ -86,6 +86,7 @@ export default function AnswerChoices({ index }: { index: number }) {
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     changeChoice(i, event)
                   }
+                  autoComplete="off"
                 />
                 <IconButton
                   aria-label="選択肢を消去"

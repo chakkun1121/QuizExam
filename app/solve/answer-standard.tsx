@@ -47,6 +47,7 @@ export default function AnswerStandard({
             setCurrentAnswer({ ...currentAnswer, [quizID]: e.target.value });
           }}
           isDisabled={isShowAnswer}
+          autoComplete="off"
         />
         {isShowAnswer ? <p>解答: {answer}</p> : <></>}
       </div>

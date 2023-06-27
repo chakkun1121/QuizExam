@@ -60,6 +60,7 @@ export default function Quiz({
                 quizXML.getElementsByTagName("problem")[0]?.innerHTML
               }
               onChange={saveChange}
+              autoComplete="off"
             />
           </div>
         </div>
