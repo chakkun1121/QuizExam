@@ -1,8 +1,6 @@
 "use client"; // Error components must be Client Components
 
 import { useEffect } from "react";
-import Header from "./header";
-import Footer from "./footer";
 import { Button } from "@chakra-ui/react";
 
 export default function Error({
@@ -19,7 +17,6 @@ export default function Error({
 
   return (
     <>
-      <Header />
       <main className="m-1">
         <h2>エラーが発生しました。</h2>
         <div>
@@ -38,7 +35,6 @@ export default function Error({
           <pre>{error.message}</pre>
         </details>
       </main>
-      <Footer />
     </>
   );
 }

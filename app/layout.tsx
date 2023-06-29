@@ -14,6 +14,7 @@ export const metadata = {
   url: "https://quizexam.vercel.app/",
   manifest: "/manifest.json",
   themeColor: "#4ade80",
+  canonical: "https://quizexam.vercel.app/",
 };
 
 export default function RootLayout({
@@ -28,9 +29,7 @@ export default function RootLayout({
         <ChakraUIRoot>
           <body className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex-grow">
-              {children}
-            </main>
+            <main className="flex-grow">{children}</main>
             <Footer />
           </body>
         </ChakraUIRoot>
