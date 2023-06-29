@@ -19,7 +19,7 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
     }
   })();
   return (
-    <div className="m-1 flex-none rounded bg-blue-400 p-2">
+    <div className="m-2 flex-none rounded bg-blue-400 p-2">
       <div className="flex items-center">
         <div className="flex-none p-1">
           <Image
