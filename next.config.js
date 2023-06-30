@@ -6,14 +6,11 @@ const withPWA = require("next-pwa")({
   disable: process.env.NODE_ENV === "development",
 });
 const withMDX = require("@next/mdx")();
-
 const nextConfig = {
-  pageExtensions: ["tsx", "mdx"], // ここを追加
+  pageExtensions: ["ts", "tsx", "mdx"],
   experimental: {
-    appDir: true,
+    mdxRs: true,
   },
 };
-module.exports = withMDX({
-  nextConfig,
-});
-module.exports = withPWA({});
+module.exports = withMDX(withPWA({...nextConfig}));
+
