@@ -2,9 +2,7 @@
   "recommendations": [
     "streetsidesoftware.code-spell-checker",
     "usernamehw.errorlens",
-    "foxundermoon.next-js",
     "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss",
-    "ijs.reactnextjssnippets"
+    "bradlc.vscode-tailwindcss"
   ]
 }
