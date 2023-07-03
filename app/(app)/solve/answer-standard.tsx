@@ -48,6 +48,7 @@ export default function AnswerStandard({
           }}
           isDisabled={isShowAnswer}
           autoComplete="off"
+          spellCheck="false"
         />
         {isShowAnswer ? <p>解答: {answer}</p> : <></>}
       </div>
