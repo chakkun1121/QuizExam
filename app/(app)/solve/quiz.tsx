@@ -3,6 +3,7 @@
 import Answer from "./answer";
 import { useRecoilState } from "recoil";
 import { resentFileArrayAtom } from "../edit/main";
+import QuizLayout from "../../_components/quizLayout";
 
 export default function Quiz({ index }: { index: number }) {
   const [resentFileArray] = useRecoilState<Array<Element>>(resentFileArrayAtom);
@@ -10,15 +11,16 @@ export default function Quiz({ index }: { index: number }) {
   const problem = quizXML.getElementsByTagName("problem")[0]?.innerHTML;
   const answerType = quizXML.getAttribute("type") || null;
   return (
-    <div className="m-2 rounded bg-blue-300 p-2">
-      <div>
-        <h2>
-          {("000" + (index + 1)).slice(-3)}:{problem}
-        </h2>
-      </div>
-      <div>
+    <>
+      <QuizLayout mode="solve">
+        <div>
+          <span className="select-none">
+            {("000" + (index + 1)).slice(-3)}:
+          </span>
+          {problem}
+        </div>
         <Answer type={answerType} index={index} />
-      </div>
-    </div>
+      </QuizLayout>
+    </>
   );
 }
