@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { fileInfoType, filesInfoState } from "../../lib/filesInfo";
-import { downloadFile } from "../../lib/download";
+import { fileInfoType, filesInfoState } from "../../../lib/filesInfo";
+import { downloadFile } from "../../../lib/download";
 import { useRecoilState } from "recoil";
 
 export default function File({ fileInfo }: { fileInfo: fileInfoType }) {

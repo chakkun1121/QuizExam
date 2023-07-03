@@ -1,9 +1,9 @@
 import GoogleAnalytics from "./GoogleAnalytics";
-import { ChakraUIRoot } from "./chakra-ui";
+import { ChakraUIRoot } from "./(app)/chakra-ui";
 import Footer from "./footer";
 import "./globals.scss";
 import Header from "./header";
-import { Recoil } from "./recoil";
+import { Recoil } from "./(app)/recoil";
 
 export const metadata = {
   title:
@@ -25,15 +25,11 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <GoogleAnalytics />
-      <Recoil>
-        <ChakraUIRoot>
-          <body className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </body>
-        </ChakraUIRoot>
-      </Recoil>
+      <body className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

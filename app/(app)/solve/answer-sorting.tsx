@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { getAnswerXML } from "../edit/main";
 
-export default function AnswerSorting({ index,quizID }: { index: number,quizID:string }) {
+export default function AnswerSorting({
+  index,
+  quizID,
+}: {
+  index: number;
+  quizID: string;
+}) {
   const [answerXML, setAnswerXML] = useState<Element>(getAnswerXML(index));
   const answerArray =
     answerXML?.innerHTML.split(/\<sort\>|\<\/sort\>/).map((answer) => {

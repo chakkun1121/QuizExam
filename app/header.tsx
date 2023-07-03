@@ -1,5 +1,4 @@
 import Link from "next/link";
-// import Account from "./account";
 
 export default function Header() {
   return (
@@ -12,10 +11,6 @@ export default function Header() {
         </h1>
         <p className="text-sm">一問一答形式のクイズで試験本番の練習をしよう!</p>
       </div>
-      {/* アカウント機能は初期リリース時には未実装 */}
-      {/* <div className="flex-none">
-        <Account />
-      </div> */}
     </header>
   );
 }

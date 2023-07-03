@@ -1,7 +1,7 @@
 "use client";
 
 import { atom, useRecoilState } from "recoil";
-import { fileInfoType, filesInfoState } from "../../lib/filesInfo";
+import { fileInfoType, filesInfoState } from "../../../lib/filesInfo";
 import Quiz from "./quiz";
 import { useEffect } from "react";
 import Link from "next/link";

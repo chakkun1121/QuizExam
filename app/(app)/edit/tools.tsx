@@ -4,7 +4,7 @@ import {
   filesInfoState,
   fileInfoType,
   filesInfoType,
-} from "../../lib/filesInfo";
+} from "../../../lib/filesInfo";
 import { Input, IconButton } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { v4 as createUUID } from "uuid";
@@ -45,8 +45,9 @@ export default function Tools({ fileID }: { fileID: string }) {
               };
               cashedCurrentFileInfo.name = e.target.value;
               return {
-                files: filesInfo.files.map((fileInfo: fileInfoType, i:number) =>
-                  i === currentFileIndex ? cashedCurrentFileInfo : fileInfo
+                files: filesInfo.files.map(
+                  (fileInfo: fileInfoType, i: number) =>
+                    i === currentFileIndex ? cashedCurrentFileInfo : fileInfo
                 ),
               };
             });

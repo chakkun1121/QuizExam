@@ -2,10 +2,10 @@
 import Link from "next/link";
 import File from "./file";
 import { useRecoilState } from "recoil";
-import { filesInfoState, fileInfoType } from "../../lib/filesInfo";
-import { getFileInfoFromFile } from "../../lib/localFile/getFileInfoFromFile";
-import { showFilePicker } from "../../lib/localFile/uploadFile";
-import LinkButton from "../_components/linkButton";
+import { filesInfoState, fileInfoType } from "../../../lib/filesInfo";
+import { getFileInfoFromFile } from "../../../lib/localFile/getFileInfoFromFile";
+import { showFilePicker } from "../../../lib/localFile/uploadFile";
+import LinkButton from "../../_components/linkButton";
 
 export default function Files() {
   const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);

@@ -4,11 +4,11 @@ import {
   filesInfoState,
   fileInfoType,
   filesInfoType,
-} from "../../lib/filesInfo";
+} from "../../../lib/filesInfo";
 import { atom } from "recoil";
 import Quiz from "./quiz";
 import { useEffect } from "react";
-import { getFileInfoFromFile } from "../../lib/localFile/getFileInfoFromFile";
+import { getFileInfoFromFile } from "../../../lib/localFile/getFileInfoFromFile";
 export const resentFileArrayAtom = atom<Array<Element>>({
   key: "resentFileArray",
   default: [],
