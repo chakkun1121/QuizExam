@@ -9,7 +9,7 @@ const withMDX = require("@next/mdx")();
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "mdx"],
   experimental: {
-    mdxRs: true,
+    // mdxRs: true,
   },
 };
 module.exports = withMDX(withPWA({...nextConfig}));
