@@ -1,13 +1,10 @@
 "use client";
 import { MDXProvider } from "@mdx-js/react";
 
-export default function HelpLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function HelpLayout(props: any) {
   return (
     <>
+      {/* ここはゴリ押しなので早めに書き換える */}
       <style jsx global>{`
         article h1 {
           display: block;
@@ -20,17 +17,19 @@ export default function HelpLayout({
         }
       `}</style>
       <article className="m-2">
-        <MDXProvider components={components}>{children}</MDXProvider>
+        <MDXProvider components={components} {...props} />
       </article>
     </>
   );
 }
-const components = {
-  h1: H1,
+
+// todo: ここが適応されない
+const Heading = {
+  H1: (props: any) => {
+    return <h1 className="text-2x1" {...props} />;
+  },
 };
-function H1({ children }) {
-  return <h1 className="text-x1">{children}</h1>;
-}
-function H2({ children }) {
-  return <h2>{children}</h2>;
-}
+
+const components = {
+  h1: Heading.H1,
+};
