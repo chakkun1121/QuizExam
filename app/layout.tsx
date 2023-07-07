@@ -14,7 +14,9 @@ export const metadata = {
   url: "https://quizexam.vercel.app/",
   manifest: "/manifest.json",
   themeColor: "#4ade80",
-  canonical: "https://quizexam.vercel.app/",
+  alternates: {
+    canonical: "https://quizexam.vercel.app/",
+  }
 };
 
 export default function RootLayout({
