@@ -1,10 +1,8 @@
 "use client";
 import { useRecoilState } from "recoil";
-import {
-  filesInfoState,
-  fileInfoType,
-  filesInfoType,
-} from "../../../lib/filesInfo";
+import { filesInfoState } from "../../../types/filesInfoState";
+import { fileInfoType } from "../../../types/fileInfoType";
+import { filesInfoType } from "../../../lib/filesInfoType";
 import { atom } from "recoil";
 import Quiz from "./quiz";
 import { useEffect } from "react";

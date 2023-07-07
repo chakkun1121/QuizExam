@@ -1,6 +1,6 @@
 "use client";
 
-import { filesInfoType } from "./filesInfo";
+import { filesInfoType } from "./filesInfoType";
 import { getFileInfoFromFile } from "./localFile/getFileInfoFromFile";
 import { getFileName } from "./localStorage/getFIleName";
 import { getFileFromFileID } from "./localStorage/localStorage";

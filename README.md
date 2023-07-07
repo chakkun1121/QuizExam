@@ -22,11 +22,23 @@ filesInfo.json
       "ID": "test-xxxx-xxxxxx-xxxxxx-xxxx",
       "name": "ファイル名",
       "createdDate": "2022/6/1",
-      "lastUpdatedDate": "2022/6/2",
-      "content": "//ファイルの内容"
+      "lastUpdatedDate": "2022/6/2"
+      //contentsは削除(しばらくは読み込み時に自動以降)
     }
   ]
 }
+```
+
+localFileContents.json
+
+```json
+{
+  "files":[
+    "test-xxxx-xxxxxx-xxxxxx-xxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",//(型はElementとする)
+    "test-xxxx-xxxxxx-xxxxxx-xxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",//このように<Array<Element>> とする
+  ]
+}
+
 ```
 
 settings.json
@@ -64,7 +76,7 @@ achievement.json
 
 [ファイル例](./example.quizexam.xml)
 
-### resentFileArray<Array<Element>>
+### resentFileArray\<Array\<Element>>
 
 ```json
 [
@@ -73,3 +85,9 @@ achievement.json
   //このように<Array<Element>> とする
 ]
 ```
+
+## それぞれのページごとの流れ
+
+### /home
+
+![home](./doc/img/home.drawio.svg)

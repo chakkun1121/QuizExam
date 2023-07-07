@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import { useEffect } from "react";
-import { fileInfoType, filesInfoState } from "./filesInfo";
+import { fileInfoType } from "../types/fileInfoType";
 import { useRecoilState } from "recoil";
+import { filesInfoState } from "./recoil/filesInfoState";
 
 export function useAddFileToFilesInfo(newFileInfo: fileInfoType) {
   useEffect(() => {

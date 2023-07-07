@@ -1,5 +1,6 @@
 "use client";
-import { fileInfoType, savedPlaceType } from "../filesInfo";
+import { savedPlaceType } from "../../types/savedPlaceType";
+import { fileInfoType } from "../../types/fileInfoType";
 
 export async function getFileInfoFromFile(
   file: string | Element,
@@ -12,25 +13,20 @@ export async function getFileInfoFromFile(
       ? new DOMParser().parseFromString(file, "text/xml")
       : file;
   const fileID: string =
-    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["fileID"]?.value || "";
+    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["fileID"]
+      ?.value || "";
   const createdDate: Date = new Date(
-    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["createdDate"]?.value ||
-      null
+    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["createdDate"]
+      ?.value || null
   );
   const lastUpdatedDate: Date = new Date(
-    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.[
-      "lastUpdatedDate"
-    ]?.value || null
+    xmlFile.getElementsByTagName("quizexam")[0]?.attributes?.["lastUpdatedDate"]
+      ?.value || null
   );
-  const stringFile: string =
-    typeof file == "string"
-      ? file
-      : new XMLSerializer().serializeToString(xmlFile);
   const fileInfo: fileInfoType = {
     ID: fileID,
     createdDate,
     lastUpdatedDate,
-    content: stringFile,
     name: fileName,
     savedPlace,
   };

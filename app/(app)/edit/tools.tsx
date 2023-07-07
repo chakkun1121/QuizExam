@@ -1,10 +1,8 @@
 "use client";
 import { useRecoilState } from "recoil";
-import {
-  filesInfoState,
-  fileInfoType,
-  filesInfoType,
-} from "../../../lib/filesInfo";
+import { filesInfoState } from "../../../types/filesInfoState";
+import { fileInfoType } from "../../../types/fileInfoType";
+import { filesInfoType } from "../../../lib/filesInfoType";
 import { Input, IconButton } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { v4 as createUUID } from "uuid";
