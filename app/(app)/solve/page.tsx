@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import SolveMain from "./main";
 export const metadata: Metadata = {
   title: "解答画面 | QuizExam | chakkun1121",
-  robot: "noindex",
+  robots: "noindex",
 };
 export default function SolveHome(pageProps: {
   searchParams: { testId: string };
