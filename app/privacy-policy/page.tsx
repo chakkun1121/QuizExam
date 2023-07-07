@@ -1,5 +1,6 @@
+import { Metadata } from "next";
 import PrivacyPolicy from "./main";
-export const metadata = {
+export const metadata: Metadata = {
   title: "プライバシーポリシー | QuizExam | chakkun1121",
 };
 export default function PrivacyPolicyPages() {

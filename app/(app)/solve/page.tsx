@@ -1,5 +1,6 @@
+import { Metadata } from "next";
 import SolveMain from "./main";
-export const metadata = {
+export const metadata: Metadata = {
   title: "解答画面 | QuizExam | chakkun1121",
   robot: "noindex",
 };

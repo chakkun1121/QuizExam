@@ -3,7 +3,7 @@
 import Answer from "./answer";
 import { useRecoilState } from "recoil";
 import { resentFileArrayAtom } from "../edit/main";
-import QuizLayout from "../../_components/quizLayout";
+import QuizLayout from "../_components/quizLayout";
 
 export default function Quiz({ index }: { index: number }) {
   const [resentFileArray] = useRecoilState<Array<Element>>(resentFileArrayAtom);

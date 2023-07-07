@@ -8,7 +8,7 @@ import { IconButton } from "@chakra-ui/react";
 import { RiDeleteBinFill } from "react-icons/ri";
 import ProblemInput from "../_components/problemInput";
 import TypeSelect from "../_components/typeSelect";
-import QuizLayout from "../../_components/quizLayout";
+import QuizLayout from "../_components/quizLayout";
 const typeOptions = [
   { value: "standard", label: "標準" },
   { value: "hold", label: "穴埋め形式" },

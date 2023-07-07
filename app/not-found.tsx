@@ -1,6 +1,9 @@
-import Link from "next/link";
-export const metadata = {
+import { Metadata } from "next";
+import Link from "./_components/link";
+
+export const metadata: Metadata = {
   title: "404 ページが見つかりません | QuizExam | chakkun1121",
+  robots: "noindex",
 };
 export default function NotFound() {
   return (
