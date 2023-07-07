@@ -91,3 +91,11 @@ achievement.json
 ### /home
 
 ![home](./doc/img/home.drawio.svg)
+
+## /edit
+
+![edit](./doc/img/edit.drawio.svg)
+
+## /solve
+
+![solve](./doc/img/solve.drawio.svg)
