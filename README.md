@@ -34,7 +34,7 @@ localFileContents.json
 ```json
 {
   "files":[
-    "test-xxxx-xxxxxx-xxxxxx-xxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",//(型はElementとする)
+    "test-xxxx-xxxxxx-xxxxxx-xxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",
     "test-xxxx-xxxxxx-xxxxxx-xxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",//このように<Array<Element>> とする
   ]
 }
