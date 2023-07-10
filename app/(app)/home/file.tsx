@@ -43,7 +43,12 @@ export default function File({
             回答する
           </LinkButton>
           <button
-            onClick={() => downloadFile(fileInfo.name, fileContent)}
+            onClick={() =>
+              downloadFile({
+                fileName: fileInfo.name,
+                file: fileContent,
+              })
+            }
             className="m-2 rounded border border-black bg-blue-600 p-2 text-white"
           >
             ダウンロード

@@ -50,7 +50,7 @@ export default function Files() {
               <File
                 fileInfo={fileInfo}
                 key={fileInfo.ID}
-                fileContent={localFileContents[fileInfo.ID]}
+                fileContent={localFileContents.files[fileInfo.ID]}
               />
             );
           })

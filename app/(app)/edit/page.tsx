@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import EditMain from "./main";
-import Tools from "./tools";
 import { v4 as getUUID } from "uuid";
 export const metadata: Metadata = {
   title: "編集画面 | QuizExam | chakkun1121",

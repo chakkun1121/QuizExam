@@ -18,7 +18,6 @@ export default function EditMain({ fileID }: { fileID: string }) {
     lastUpdatedDate: new Date(),
     savedPlace: "local",
   };
-  console.log(fileInfo);
   return (
     <>
       <Tools

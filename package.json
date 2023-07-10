@@ -25,13 +25,15 @@
     "@types/react-dom": "18.2.4",
     "@types/uuid": "^9.0.2",
     "@types/wicg-file-system-access": "^2020.9.6",
+    "@types/xml2js": "^0.4.11",
     "autoprefixer": "10.4.14",
     "chakra-ui": "^0.3.9",
     "eslint": "^8.44.0",
+    "fast-xml-parser": "^4.2.5",
     "framer-motion": "^10.12.18",
     "next": "latest",
     "next-pwa": "latest",
-    "pnpm": "latest",
+    "pnpm": "^8.6.7",
     "postcss": "8.4.24",
     "react": "latest",
     "react-dom": "latest",
@@ -41,7 +43,8 @@
     "sass": "latest",
     "tailwindcss": "latest",
     "typescript": "latest",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "xml2js": "^0.6.0"
   },
   "devDependencies": {
     "prettier": "^2.8.8",

@@ -1,6 +1,12 @@
 "use client";
 
-export async function downloadFile(fileName: string, fileContent: string) {
+export async function downloadFile({
+  fileName,
+  file,
+}: {
+  fileName: string;
+  file: string;
+}) {
   const fileHandle = await window.showSaveFilePicker({
     suggestedName: `${fileName}.quizexam.xml`,
     types: [
@@ -11,7 +17,7 @@ export async function downloadFile(fileName: string, fileContent: string) {
     ],
   });
   const writable = await fileHandle.createWritable();
-  await writable.write(fileContent);
+  await writable.write(file);
   await writable.close();
   return;
 }
