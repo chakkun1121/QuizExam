@@ -1,14 +1,24 @@
-import { Metadata } from "next";
+"use client";
+import { useRouter } from "next/navigation";
 import EditMain from "./main";
 import { v4 as getUUID } from "uuid";
-export const metadata: Metadata = {
-  title: "編集画面 | QuizExam | chakkun1121",
-  robots: "noindex",
-};
+import { useEffect } from "react";
+
 export default function EditHome(pageProps: {
   searchParams: { testId: string };
 }) {
-  const fileID: string = pageProps.searchParams.testId || `test-${getUUID()}`;
+  const router = useRouter();
+  useEffect(() => {
+    if (!pageProps?.searchParams?.testId)
+      router.push(`/edit?testId=${getUUID()}`);
+  }, []);
+  if (!pageProps?.searchParams?.testId)
+    return (
+      <>
+        <h2>新規ファイルを作成中</h2>
+      </>
+    );
+  const fileID: string = pageProps.searchParams.testId;
   return (
     <>
       <EditMain fileID={fileID} />
