@@ -2,7 +2,7 @@ export default function QuizLayout({
   mode,
   children: [Problem, Answer, SelectType = <></>, Delate = <></>],
 }: {
-  mode: "edit" | "solve";
+  mode: "edit" | "solve" | "view";
   children: any;
 }) {
   return (

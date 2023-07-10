@@ -1,6 +1,6 @@
 "use client";
 import { use, useEffect, useState } from "react";
-import { getAnswerXML, resentFileArrayAtom } from "./main";
+import { getAnswerXML, resentFileArrayAtom } from "../edit/main";
 import { IconButton, Input, Radio, RadioGroup, Stack } from "@chakra-ui/react";
 import { AddIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useRecoilState } from "recoil";
