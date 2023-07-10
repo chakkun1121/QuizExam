@@ -4,21 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { fileInfoType } from "../../../types/fileInfoType";
 import { downloadFile } from "../../../lib/download";
-import { useRecoilState } from "recoil";
-import { filesInfoState } from "../../../lib/recoil/filesInfoState";
 
-export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
-  const [filesInfo] = useRecoilState(filesInfoState);
-  const savedPlaceJapanese = (() => {
-    switch (fileInfo.savedPlace) {
-      case "local":
-        return "ローカル";
-      case "cloud":
-        return "クラウド";
-      case "GoogleDrive":
-        return "GoogleDrive";
-    }
-  })();
+export default function File({
+  fileInfo,
+  fileContent,
+}: {
+  fileInfo: fileInfoType;
+  fileContent: string;
+}) {
   return (
     <div className="m-2 flex-none rounded bg-blue-400 p-2">
       <div className="flex items-center">
@@ -27,7 +20,7 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
             width={48}
             height={48}
             src={`/icons/${fileInfo.savedPlace}.png`}
-            alt={`${savedPlaceJapanese}ファイル`}
+            alt={`${savedPlaceJapanese[fileInfo.savedPlace]}ファイル`}
           />
         </div>
         <div className="max-w-full flex-auto  truncate text-4xl">
@@ -50,7 +43,7 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
             回答する
           </LinkButton>
           <button
-            onClick={() => downloadFile(fileInfo.ID, filesInfo)}
+            onClick={() => downloadFile(fileInfo.name, fileContent)}
             className="m-2 rounded border border-black bg-blue-600 p-2 text-white"
           >
             ダウンロード
@@ -69,3 +62,8 @@ function LinkButton({ href, children }: { href: string; children: string }) {
     </div>
   );
 }
+const savedPlaceJapanese = {
+  local: "ローカル",
+  cloud: "クラウド",
+  GoogleDrive: "GoogleDrive",
+};

@@ -1,14 +1,6 @@
 "use client";
 
-import { filesInfoType } from "./filesInfoType";
-import { getFileInfoFromFile } from "./localFile/getFileInfoFromFile";
-import { getFileName } from "./localStorage/getFIleName";
-import { getFileFromFileID } from "./localStorage/localStorage";
-
-export async function downloadFile(fileID: string, filesInfo: filesInfoType) {
-  const file: Element = getFileFromFileID(filesInfo, fileID);
-  const fileName: string = getFileName(filesInfo, fileID);
-  const fileContent: string = file.outerHTML;
+export async function downloadFile(fileName: string, fileContent: string) {
   const fileHandle = await window.showSaveFilePicker({
     suggestedName: `${fileName}.quizexam.xml`,
     types: [

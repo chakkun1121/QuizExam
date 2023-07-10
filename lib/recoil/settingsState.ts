@@ -1,9 +1,10 @@
 "use client";
 import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
+import { storage } from "./storage";
 const { persistAtom } = recoilPersist({
   key: "settings",
-  storage: window?.localStorage,
+  storage,
 });
 export const settingsState = atom({
   key: "settings",

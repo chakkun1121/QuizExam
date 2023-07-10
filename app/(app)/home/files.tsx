@@ -16,9 +16,8 @@ import { filesInfoType } from "../../../types/filesInfoType";
 export default function Files() {
   const [filesInfo, setFilesInfo] =
     useRecoilState<filesInfoType>(filesInfoState);
-  const [_, setLocalFileContents] = useRecoilState<localFileContentsType>(
-    localFileContentsState
-  );
+  const [localFileContents, setLocalFileContents] =
+    useRecoilState<localFileContentsType>(localFileContentsState);
   useEffect(() => {
     async function sync() {
       if (isLogin()) {
@@ -47,7 +46,13 @@ export default function Files() {
       <div>
         {filesInfo?.files?.length ? (
           filesInfo.files.map((fileInfo: fileInfoType) => {
-            return <File fileInfo={fileInfo} key={fileInfo.ID} />;
+            return (
+              <File
+                fileInfo={fileInfo}
+                key={fileInfo.ID}
+                fileContent={localFileContents[fileInfo.ID]}
+              />
+            );
           })
         ) : (
           <p>

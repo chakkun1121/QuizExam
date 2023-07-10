@@ -12,7 +12,6 @@ export default function EditHome(pageProps: {
   const fileID: string = pageProps.searchParams.testId || `test-${getUUID()}`;
   return (
     <>
-      <Tools fileID={fileID} />
       <EditMain fileID={fileID} />
     </>
   );
