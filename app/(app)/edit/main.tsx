@@ -30,8 +30,10 @@ export default function EditMain({ fileID }: { fileID: string }) {
     fileInfo.savedPlace == "local"
       ? localFileContents.files[fileInfo.ID] || ""
       : undefined;
+  // fast-xml-parserの設定
   const fileObject: fileObjectType = new XMLParser({
     ignoreAttributes: false,
+    // choiceだけは必ずobjectにする
   }).parse(fileContent) || {
     quizexam: {
       "@_createdDate": new Date(),
@@ -40,6 +42,7 @@ export default function EditMain({ fileID }: { fileID: string }) {
       quiz: [],
     },
   };
+  console.log(fileObject);
   return (
     <>
       <Tools

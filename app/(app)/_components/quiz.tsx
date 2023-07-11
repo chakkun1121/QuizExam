@@ -4,6 +4,7 @@ import QuizLayout from "./quizLayout";
 import TypeSelect from "./typeSelect";
 import { RiDeleteBinFill } from "react-icons/ri";
 import AnswerStandard from "./answer-standard";
+import AnswerChoices from "./answer-choices";
 
 export default function Quiz({
   quizObject,
@@ -50,8 +51,21 @@ export default function Quiz({
                     />
                   </>
                 );
-              case "choice":
-                return <></>;
+              case "choices":
+                console.log(quizObject.answer);
+                return (
+                  <>
+                    <AnswerChoices
+                      answerObject={quizObject.answer as object}
+                      setAnswer={(newAnswerObject) => {
+                        setQuizObject({
+                          ...quizObject,
+                          answer: newAnswerObject,
+                        });
+                      }}
+                    />
+                  </>
+                );
               case "hole":
                 return <></>;
               case "sorting":
