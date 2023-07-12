@@ -42,7 +42,6 @@ export default function EditMain({ fileID }: { fileID: string }) {
       quiz: [],
     },
   };
-  console.log(fileObject);
   return (
     <>
       <Tools

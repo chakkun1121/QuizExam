@@ -1,4 +1,3 @@
-"use client";
 import { savedPlaceType } from "./savedPlaceType";
 
 export interface fileInfoType {

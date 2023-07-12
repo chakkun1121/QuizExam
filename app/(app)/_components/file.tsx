@@ -16,7 +16,6 @@ export default function File({
       quiz: fileObject.quizexam.quiz.filter((_, index) => index !== i),
     });
   }
-  console.log(fileObject.quizexam.quiz);
   return (
     <>
       {fileObject.quizexam?.quiz?.map((quiz, i) => {

@@ -5,6 +5,7 @@ import TypeSelect from "./typeSelect";
 import { RiDeleteBinFill } from "react-icons/ri";
 import AnswerStandard from "./answer-standard";
 import AnswerChoices from "./answer-choices";
+import { answerObjectType } from "../../../types/answerObjectType";
 
 export default function Quiz({
   quizObject,
@@ -48,21 +49,22 @@ export default function Quiz({
                       setAnswer={(newAnswer) => {
                         setQuizObject({ ...quizObject, answer: newAnswer });
                       }}
+                      mode={mode}
                     />
                   </>
                 );
               case "choices":
-                console.log(quizObject.answer);
                 return (
                   <>
                     <AnswerChoices
-                      answerObject={quizObject.answer as object}
+                      answerObject={quizObject.answer as answerObjectType}
                       setAnswer={(newAnswerObject) => {
                         setQuizObject({
                           ...quizObject,
                           answer: newAnswerObject,
                         });
                       }}
+                      mode={mode}
                     />
                   </>
                 );

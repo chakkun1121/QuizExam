@@ -22,7 +22,6 @@ export default function Files() {
     async function sync() {
       if (isLogin()) {
         const message = await syncFilesInfo(filesInfo);
-        console.log(message);
       }
     }
     sync();

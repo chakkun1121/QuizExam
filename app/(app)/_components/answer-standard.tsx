@@ -4,11 +4,13 @@ import { Input } from "@chakra-ui/react";
 export default function AnswerStandard({
   answer,
   setAnswer,
+  mode,
 }: {
   answer: string;
   setAnswer?: (newAnswer: string) => void;
+  mode: "edit" | "solve" | "view";
 }) {
-  return (
+  return mode == "edit" ? (
     <Input
       className="w-full"
       id="answer"
@@ -19,5 +21,7 @@ export default function AnswerStandard({
         setAnswer(e.target.value);
       }}
     />
+  ) : (
+    <p className="w-full">{answer}</p>
   );
 }
