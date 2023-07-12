@@ -89,3 +89,7 @@ achievement.json
 ## /solve
 
 ![solve](./doc/img/solve.drawio.svg)
+
+## ヘルプページについて
+
+ヘルプページは mdx を使用して作成する。
