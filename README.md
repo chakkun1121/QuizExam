@@ -92,6 +92,15 @@ achievement.json
 
 ![solve](./doc/img/solve.drawio.svg)
 
+## 解答の一時保管法
+
+resentAnswerCash
+
+````json
+{
+  "test-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";"解答(一時)"
+}```
 ## ヘルプページについて
 
 ヘルプページは mdx を使用して作成する。
+````

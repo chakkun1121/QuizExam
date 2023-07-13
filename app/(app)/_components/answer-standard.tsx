@@ -5,10 +5,12 @@ export default function AnswerStandard({
   answer,
   setAnswer,
   mode,
+  isShowAnswer,
 }: {
   answer: string;
   setAnswer?: (newAnswer: string) => void;
   mode: "edit" | "solve" | "view";
+  isShowAnswer?: boolean;
 }) {
   return mode == "edit" ? (
     <Input
@@ -21,6 +23,11 @@ export default function AnswerStandard({
         setAnswer(e.target.value);
       }}
     />
+  ) : mode == "solve" ? (
+    <>
+      <Input placeholder="解答欄" isDisabled={isShowAnswer} />
+      {isShowAnswer ? <p>{answer}</p> : <></>}
+    </>
   ) : (
     <p className="w-full">{answer}</p>
   );

@@ -10,23 +10,24 @@ import AnswerSorting from "./answer-sorting";
 import AnswerHole from "./answer-hole";
 import { AnswerSortingType } from "../../../types/AnswerSortingType";
 import { answerHoleType } from "../../../types/answerHoleType";
+import { quizObjectType } from "../../../types/quizObjectType";
 
 export default function Quiz({
   quizObject,
   mode,
   setQuizObject,
   deleteQuiz,
+  isShowAnswer,
+  setResentAnswer,
 }: {
-  quizObject: {
-    "@_quizID": string;
-    "@_type": "standard" | "hole" | "choices" | "sorting" | null;
-    problem: string;
-    answer: {} | string;
-  };
+  quizObject: quizObjectType;
   mode: "edit" | "solve" | "view";
   setQuizObject?: (newQuizObject: object) => void;
   deleteQuiz?: () => void;
+  isShowAnswer?: boolean;
+  setResentAnswer?: (newResentAnswer) => void;
 }) {
+  const id: string = quizObject["@_quizID"];
   return (
     <>
       <QuizLayout mode={mode}>
@@ -54,6 +55,7 @@ export default function Quiz({
                         setQuizObject({ ...quizObject, answer: newAnswer });
                       }}
                       mode={mode}
+                      isShowAnswer={isShowAnswer}
                     />
                   </>
                 );
@@ -69,6 +71,7 @@ export default function Quiz({
                         });
                       }}
                       mode={mode}
+                      isShowAnswer={isShowAnswer}
                     />
                   </>
                 );
@@ -84,6 +87,7 @@ export default function Quiz({
                         });
                       }}
                       mode={mode}
+                      isShowAnswer={isShowAnswer}
                     />
                   </>
                 );
@@ -98,6 +102,7 @@ export default function Quiz({
                           answer: newAnswerObject,
                         });
                       }}
+                      isShowAnswer={isShowAnswer}
                       mode={mode}
                     />
                   </>

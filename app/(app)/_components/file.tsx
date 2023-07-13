@@ -4,11 +4,15 @@ import Quiz from "./quiz";
 export default function File({
   fileObject,
   setFileObject,
+  setResentAnswers,
   mode,
+  isShowAnswer,
 }: {
   fileObject: fileObjectType;
   setFileObject?: (newFileObject: object) => void;
+  setResentAnswers?;
   mode: "edit" | "solve" | "view";
+  isShowAnswer?: boolean;
 }) {
   function deleteQuiz(i: number) {
     setFileObject({
@@ -28,10 +32,14 @@ export default function File({
               quiz[i] = newQuiz;
               setFileObject({ ...fileObject, quiz: quiz });
             }}
+            setResentAnswers={(newResentAnswer) => {
+              setResentAnswers((resentAnswers) => {});
+            }}
             deleteQuiz={() => {
               deleteQuiz(i);
             }}
             key={quiz["@_quizID"]}
+            isShowAnswer={isShowAnswer}
           />
         );
       })}

@@ -1,62 +1,58 @@
 "use client";
 
-import { atom, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { fileInfoType } from "../../../types/fileInfoType";
-import Quiz from "./quiz";
-import { useEffect } from "react";
-import Link from "next/link";
 import { filesInfoState } from "../../../lib/recoil/filesInfoState";
-
-const resentFileArrayAtom = atom<Array<Element>>({
-  key: "resentFileArray",
-  default: [],
-});
-export const isShowAnswerAtom = atom<boolean>({
-  key: "isShowAnswer",
-  default: false,
-});
-export const currentAnswerAtom = atom<Object>({
-  key: "currentAnswer",
-  default: {},
-});
+import { notFound } from "next/navigation";
+import { isLogin } from "../_account/isLogin";
+import { filesInfoType } from "../../../types/filesInfoType";
+import { localFileContentsState } from "../../../lib/recoil/localFileContentsState";
+import { fileObjectType } from "../../../types/fileObjectType";
+import { XMLParser } from "fast-xml-parser";
+import File from "../_components/file";
+import { localFileContentsType } from "../../../types/localFileContentsType";
+import { useState } from "react";
 export default function SolveMain({ fileID }: { fileID: string }) {
-  const [filesInfo] = useRecoilState(filesInfoState);
-  const [isShowAnswer, setIsShowAnswer] = useRecoilState(isShowAnswerAtom);
-  useEffect(() => {
-    setIsShowAnswer(false);
-  }, []);
-  const resentFileXML = new DOMParser().parseFromString(
-    (
-      filesInfo?.files?.find(
-        (fileInfo: fileInfoType) => fileInfo.ID === fileID
-      ) || {}
-    ).content || "",
-    "text/xml"
+  if (!fileID) notFound();
+  const [filesInfo] = useRecoilState<filesInfoType>(filesInfoState);
+  const [localFilesContent] = useRecoilState<localFileContentsType>(
+    localFileContentsState
   );
-  const [resentFileArray, setRecentFileArray] =
-    useRecoilState<Array<Element>>(resentFileArrayAtom);
-  useEffect(() => {
-    setRecentFileArray(Array.from(resentFileXML.getElementsByTagName("quiz")));
-  }, []);
+  const [resentAnswers, setResentAnswers] = useState<string[]>([]);
+  const [isShowAnswer, setIsShowAnswer] = useState<boolean>(false);
+  if (isLogin()) {
+    // await sync();
+  }
+  const isExistInFilesInfo = filesInfo.files.some(
+    (fileInfo: fileInfoType) => fileInfo.ID == fileID
+  );
+  if (!isExistInFilesInfo) notFound();
+  const savedPlace = filesInfo.files.find(
+    (fileInfo: fileInfoType) => fileInfo.ID == fileID
+  ).savedPlace;
+  console.log(savedPlace === "local");
+  const fileContent: string =
+    savedPlace === "local"
+      ? localFilesContent.files[fileID]
+      : null; /*await getFIlesFromCloud(fileID)*/
+  console.log(fileContent);
+  if (!fileContent) notFound();
+  const fileObject: fileObjectType = new XMLParser({
+    ignoreAttributes: false,
+  }).parse(fileContent);
+  if (!fileObject) notFound();
   return (
     <>
-      <div>
-        {resentFileArray.map((_, index: number) => {
-          return <Quiz index={index} key={index} />;
-        })}
-      </div>
+      <File
+        fileObject={fileObject}
+        setResentAnswers={setResentAnswers};
+        isShowAnswer={isShowAnswer}
+        mode="solve"
+      />
       {!isShowAnswer ? (
-        <button
-          onClick={() => {
-            setIsShowAnswer(true);
-          }}
-        >
-          解答する
-        </button>
+        <button onClick={() => setIsShowAnswer(true)}>解答する</button>
       ) : (
-        <>
-          <Link href="/home">ホーム画面へ</Link>
-        </>
+        <a href="/home">ホームへ戻る</a>
       )}
     </>
   );
