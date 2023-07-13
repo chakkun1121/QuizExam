@@ -1,28 +1,51 @@
-import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { getAnswerXML, resentFileArrayAtom } from "./main";
+import { Input } from "@chakra-ui/react";
+import { answerHoleType } from "../../../types/answerHoleType";
 
-export default function AnswerHole({ index }: { index: number }) {
-  const [answerXML, setAnswerXML] = useState<Element>(getAnswerXML(index));
-  //answerXMLファイルをばらす
-  // <answer>解答<hole>穴埋め箇所</hole>解答</answer> -> ["解答", "穴埋め箇所", "解答"]
-  // <answer><hole>穴埋め1</hole><hole>穴埋め2</hole></answer> -> ["","穴埋め1","", "穴埋め2",""]
-  const answerArray =
-    answerXML?.innerHTML.split(/\<hole\>|\<\/hole\>/).map((answer) => {
-      return answer.match(/^(\s| |　)*$/) ? null : answer;
-    }) || [];
+export default function AnswerHole({
+  answerObject,
+  setAnswer,
+  mode,
+}: {
+  answerObject: answerHoleType;
+  setAnswer?: (newAnswerObject: object) => void;
+  mode: "edit" | "solve" | "view";
+}) {
+  console.log(answerObject);
   return (
     <>
-      {/* <p contentEditable>
-        {answerArray.map((answer, i) => {
-          return i % 2 === 0 ? answer : <Hole>{answer}</Hole>;
-        })}
-      </p> */}
-      <p>申し訳ございませんが、穴埋め形式は未実装です。</p>
+      {mode == "edit" ? (
+        <>
+          {answerObject.section.map((section, index: number) => {
+            return (
+              <>
+                {typeof section == "string" ? (
+                  <Input
+                    value={section}
+                    onChange={(e) => {
+                      setAnswer({
+                        ...answerObject,
+                        section: answerObject.section.map(
+                          (section, i: number) => {
+                            return i == index ? e.target.value : section;
+                          }
+                        ),
+                      });
+                    }}
+                  />
+                ) : (
+                  <>
+                    <p>{section.hole}</p>
+                  </>
+                )}
+              </>
+            );
+          })}
+        </>
+      ) : mode == "solve" ? (
+        <></>
+      ) : (
+        <></>
+      )}
     </>
   );
-}
-
-function Hole({ children }: { children: string }) {
-  return <span className="bg-yellow-200">{children}</span>;
 }

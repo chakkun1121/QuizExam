@@ -4,10 +4,15 @@
     <problem>問題文</problem>
     <answer>答え</answer>
   </quiz>
-  <quiz quizID="quiz-6040a644-7cbf-e0ef-60ab-8f7c12e89bc7" type="hold">
+  <quiz quizID="quiz-6040a644-7cbf-e0ef-60ab-8f7c12e89bc7" type="hole">
     <!-- 穴埋め形式の場合 -->
     <problem>問題文</problem>
-    <answer showDefault="true">解答 <hole>穴埋め部分</hole>
+    <answer>
+      <section>解答 </section>
+      <section>
+        <hole>穴埋め部分</hole>
+      </section>
+      <section>穴の外</section>
     </answer>
   </quiz>
   <quiz quizID="quiz-f2ce6783-c53c-fd33-779b-4e3298d43781" type="choices">
@@ -23,19 +28,19 @@
   <quiz quizID="quiz-ffb1c57f-2511-0d4a-24db-fc39f646c49e" type="sorting">
     <!-- 並べ替え形式の場合 -->
     <problem>問題文</problem>
-    <answer showDefault="true">
-    解答
-      <sort>
-        単語1
-      </sort>
-      <sort>
-        単語2
-      </sort>
-    </answer>
-  </quiz>
-  <quiz quizID="quiz-24511461-813d-77c2-59a5-4185aa1fa94f" type="hold">
-    <!-- 解答のみの穴埋め -->
-    <answer showDefault="true">解答 <hole>穴埋め部分</hole>
+    <answer>
+      <section>解答(並べ替え部分の前)</section>
+      <section>
+        <sort>
+          単語1
+        </sort>
+        <sort>
+          単語2
+        </sort>
+      </section>
+      <section>
+      並べ替え部分のあと
+      </section>
     </answer>
   </quiz>
 </quizexam>

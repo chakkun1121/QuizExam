@@ -13,7 +13,6 @@ export default function AnswerChoices({
   setAnswer: (newAnswerObject: object) => void;
   mode: "edit" | "solve" | "view";
 }) {
-  console.log(answerObject);
   function addChoice() {
     setAnswer({
       ...answerObject,

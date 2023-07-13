@@ -6,7 +6,7 @@ export interface fileObjectType {
     quiz: [
       {
         "@_quizID": string;
-        "@type": "standard" | "hold" | "choices" | "sorting" | null;
+        "@_type": "standard" | "hole" | "choices" | "sorting" | null;
         problem: string;
         answer: {} | string;
       }

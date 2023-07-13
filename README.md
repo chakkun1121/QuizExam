@@ -1,3 +1,5 @@
+<!-- markdown-lint-ignore MD026 -->
+
 # QuizExam - 一問一答形式のクイズで試験本番の練習をしよう!
 
 ## このアプリについて

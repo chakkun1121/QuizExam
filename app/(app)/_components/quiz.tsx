@@ -6,6 +6,10 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import AnswerStandard from "./answer-standard";
 import AnswerChoices from "./answer-choices";
 import { answerObjectType } from "../../../types/answerObjectType";
+import AnswerSorting from "./answer-sorting";
+import AnswerHole from "./answer-hole";
+import { AnswerSortingType } from "../../../types/AnswerSortingType";
+import { answerHoleType } from "../../../types/answerHoleType";
 
 export default function Quiz({
   quizObject,
@@ -15,7 +19,7 @@ export default function Quiz({
 }: {
   quizObject: {
     "@_quizID": string;
-    "@type": "standard" | "hold" | "choices" | "sorting" | null;
+    "@_type": "standard" | "hole" | "choices" | "sorting" | null;
     problem: string;
     answer: {} | string;
   };
@@ -69,9 +73,35 @@ export default function Quiz({
                   </>
                 );
               case "hole":
-                return <></>;
+                return (
+                  <>
+                    <AnswerHole
+                      answerObject={quizObject.answer as answerHoleType}
+                      setAnswer={(newAnswerObject) => {
+                        setQuizObject({
+                          ...quizObject,
+                          answer: newAnswerObject,
+                        });
+                      }}
+                      mode={mode}
+                    />
+                  </>
+                );
               case "sorting":
-                return <></>;
+                return (
+                  <>
+                    <AnswerSorting
+                      answerObject={quizObject.answer as AnswerSortingType}
+                      setAnswer={(newAnswerObject) => {
+                        setQuizObject({
+                          ...quizObject,
+                          answer: newAnswerObject,
+                        });
+                      }}
+                      mode={mode}
+                    />
+                  </>
+                );
               default:
                 return (
                   <>
@@ -88,7 +118,6 @@ export default function Quiz({
         <>
           {mode == "edit" ? (
             <>
-              {" "}
               <TypeSelect
                 value={quizObject["@_type"]}
                 onChange={(e) => {
@@ -118,7 +147,7 @@ export default function Quiz({
 }
 const typeOptions = [
   { value: "standard", label: "標準" },
-  { value: "hold", label: "穴埋め形式" },
+  { value: "hole", label: "穴埋め形式" },
   { value: "choices", label: "選択問題" },
   { value: "sorting", label: "並べ替え問題" },
 ];
