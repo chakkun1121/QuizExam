@@ -21,7 +21,7 @@ filesInfo.json
 {
   "files": [
     {
-      "ID": "test-xxxx-xxxxxx-xxxxxx-xxxx",
+      "ID": "test-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
       "name": "ファイル名",
       "createdDate": "2022/6/1",
       "lastUpdatedDate": "2022/6/2"
@@ -36,8 +36,8 @@ localFileContents.json
 ```json
 {
   "files":[
-    "test-xxxx-xxxxxx-xxxxxx-xxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",
-    "test-xxxx-xxxxxx-xxxxxx-xxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",//このように<Array<Element>> とする
+    "test-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",
+    "test-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",//このように<Array<Element>> とする
   ]
 }
 
@@ -58,12 +58,12 @@ achievement.json
 ```json
 {
   "achievement": {
-    "test-xxxx-xxxxxx-xxxxxx-xxxx": {
+    "test-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx": {
       [
         {
           "date": "2022/6/1",
           "detail":{
-            "quiz-xxxx-xxxxxx-xxxxxx-xxxx":{
+            "quiz-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx":{
               "correct":true,
             }
           }
