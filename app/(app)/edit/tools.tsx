@@ -1,8 +1,8 @@
 "use client";
 import { fileInfoType } from "../../../types/fileInfoType";
 import { Input, IconButton } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
 import React from "react";
+import { IoAddOutline } from "react-icons/io5";
 
 const Tools = React.memo(
   ({
@@ -30,7 +30,7 @@ const Tools = React.memo(
         <div className="flex flex-none">
           <IconButton
             aria-label="問題を追加"
-            icon={<AddIcon />}
+            icon={<IoAddOutline />}
             onClick={addQuiz}
           />
         </div>

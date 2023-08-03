@@ -1,7 +1,7 @@
 import GoogleAnalytics from "./GoogleAnalytics";
-import Footer from "./footer";
-import "./globals.scss";
-import Header from "./header";
+import Footer from "./_components/footer";
+import Header from "./_components/header";
+import "./globals.css";
 import type { Metadata } from "next";
 const description =
   "QuizExamは自分で一問一答形式などのクイズを作成し、自分で回答することで試験本番の練習をするアプリです。対応するクイズ形式は単純な一問一答形式、穴埋め、選択問題、並べ替えです。";
@@ -37,7 +37,13 @@ export default function RootLayout({
       <GoogleAnalytics />
       <body className="flex min-h-screen flex-col">
         <Header />
-        <main className="flex-grow">{children}</main>
+        <div className=" my-2 w-full flex-grow px-6">
+          <div className="max-w-container mx-auto grid grid-cols-1 gap-8 sm:grid-cols-12">
+            <main className="gap-22 col-span-full flex flex-col">
+              {children}
+            </main>
+          </div>
+        </div>
         <Footer />
       </body>
     </html>

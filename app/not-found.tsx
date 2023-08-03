@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 };
 export default function NotFound() {
   return (
-    <>
+    <section className="text-center">
       <h1>404 ページが見つかりません</h1>
       <Link href="/">ホームへ戻る</Link>
-    </>
+    </section>
   );
 }

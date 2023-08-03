@@ -1,9 +1,9 @@
 "use client";
 
 import { IconButton, Input, Radio, RadioGroup, Stack } from "@chakra-ui/react";
-import { AddIcon, DeleteIcon } from "@chakra-ui/icons";
 import { answerObjectType } from "../../../types/answerObjectType";
-
+import { IoAddOutline } from "react-icons/io5";
+import { RiDeleteBinFill } from "react-icons/ri";
 export default function AnswerChoices({
   answerObject,
   setAnswer,
@@ -80,7 +80,7 @@ export default function AnswerChoices({
                     className="flex-none"
                     onClick={() => deleteChoice(i)}
                   >
-                    <DeleteIcon />
+                    <RiDeleteBinFill />
                   </IconButton>
                 ) : (
                   <></>
@@ -92,7 +92,7 @@ export default function AnswerChoices({
       </RadioGroup>
       {mode == "edit" ? (
         <IconButton aria-label="選択肢を追加" onClick={addChoice}>
-          <AddIcon />
+          <IoAddOutline />
         </IconButton>
       ) : (
         <></>

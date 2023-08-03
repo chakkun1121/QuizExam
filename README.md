@@ -25,19 +25,20 @@ filesInfo.json
       "name": "ファイル名",
       "createdDate": "2022/6/1",
       "lastUpdatedDate": "2022/6/2"
-      //contentsは削除(しばらくは読み込み時に自動以降)
+      //contentsは削除(しばらくは読み込み時に自動以降(いらん))
     }
   ]
 }
 ```
 
-localFileContents.json
+localFiles.json
 
 ```json
 {
   "files":[
-    "test-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",
-    "test-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx":"<QuizExam><!-- 中身は省略 --></QuizExam>",//このように<Array<Element>> とする
+    "test-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx":FileSystemFileHandle,
+    "test-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx":FileSystemFileHandle,
+    //このように<Array<FileSystemFileHandle>> とする
   ]
 }
 
@@ -48,7 +49,8 @@ settings.json
 ```json
 {
   "settings": {
-    "theme": "light"
+    "theme": "light",
+    "defaultQuizType": "normal" // 問題作成時のデフォルトの問題形式
   }
 }
 ```
@@ -96,11 +98,12 @@ achievement.json
 
 resentAnswerCash
 
-````json
+```json
 {
   "test-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";"解答(一時)"
-}```
+}
+```
+
 ## ヘルプページについて
 
 ヘルプページは mdx を使用して作成する。
-````

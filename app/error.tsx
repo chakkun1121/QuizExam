@@ -20,14 +20,16 @@ export default function Error({
       <main className="m-1">
         <h2>エラーが発生しました。</h2>
         <div>
-          <Button
-            onClick={
-              // Attempt to recover by trying to re-render the segment
-              () => reset()
-            }
-          >
-            リトライ
-          </Button>
+          <p>
+            <Button
+              onClick={
+                // Attempt to recover by trying to re-render the segment
+                () => reset()
+              }
+            >
+              リトライ
+            </Button>
+          </p>
           <a>フィードバックを送信する</a>
         </div>
         <details>
