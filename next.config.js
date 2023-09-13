@@ -5,11 +5,7 @@ const withPWA = require("next-pwa")({
   skipWaiting: true,
   disable: process.env.NODE_ENV === "development",
 });
-const withMDX = require("@next/mdx")();
 const nextConfig = {
-  pageExtensions: ["ts", "tsx", "js", "jsx", "mdx"],
-  experimental: {
-    mdxRs: true,
-  },
+  output: "export",
 };
-module.exports = withMDX(withPWA(nextConfig));
+module.exports = withPWA(nextConfig);
