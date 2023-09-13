@@ -1,4 +1,3 @@
-import { Select } from "@chakra-ui/react";
 
 export default function TypeSelect({
   value,
@@ -13,7 +12,7 @@ export default function TypeSelect({
 }) {
   return (
     <>
-      <Select
+      <select
         id="choose-type-select"
         value={value}
         placeholder={placeholder}
@@ -24,7 +23,7 @@ export default function TypeSelect({
             {option.label}
           </option>
         ))}
-      </Select>
+      </select>
     </>
   );
 }

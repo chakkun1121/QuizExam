@@ -1,7 +1,6 @@
 "use client"; // Error components must be Client Components
 
 import { useEffect } from "react";
-import { Button } from "@chakra-ui/react";
 
 export default function Error({
   error,
@@ -20,14 +19,14 @@ export default function Error({
       <main className="m-1">
         <h2>エラーが発生しました。</h2>
         <div>
-          <Button
+          <button
             onClick={
               // Attempt to recover by trying to re-render the segment
               () => reset()
             }
           >
             リトライ
-          </Button>
+          </button>
           <a>フィードバックを送信する</a>
         </div>
         <details>

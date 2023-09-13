@@ -11,29 +11,29 @@
     "debug": "NODE_OPTIONS='--inspect' next dev"
   },
   "dependencies": {
-    "@types/gtag.js": "^0.0.12",
-    "@types/node": "20.2.5",
-    "@types/react": "18.2.9",
-    "@types/react-dom": "18.2.4",
-    "@types/uuid": "^9.0.2",
+    "@types/gtag.js": "^0.0.13",
+    "@types/node": "20.6.0",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
+    "@types/uuid": "^9.0.3",
     "@types/wicg-file-system-access": "^2020.9.6",
-    "autoprefixer": "10.4.14",
-    "eslint": "^8.44.0",
-    "framer-motion": "^10.12.18",
-    "next": "latest",
-    "next-pwa": "latest",
-    "postcss": "8.4.24",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-icons": "^4.10.1",
+    "autoprefixer": "10.4.15",
+    "eslint": "^8.49.0",
+    "framer-motion": "^10.16.4",
+    "next": "^13.4.19",
+    "next-pwa": "^5.6.0",
+    "postcss": "8.4.29",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "recoil": "^0.7.7",
-    "recoil-persist": "^4.2.0",
-    "tailwindcss": "latest",
-    "typescript": "latest",
-    "uuid": "^9.0.0"
+    "recoil-persist": "^5.1.0",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.3.0"
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4"
   }
 }

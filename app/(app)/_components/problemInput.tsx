@@ -1,4 +1,3 @@
-import { Input } from "@chakra-ui/react";
 
 export default function ProblemInput({
   value,
@@ -13,7 +12,7 @@ export default function ProblemInput({
 }) {
   return (
     <>
-      <Input
+      <input
         className={className}
         placeholder={placeholder}
         defaultValue={value}

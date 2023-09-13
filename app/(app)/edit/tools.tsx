@@ -5,10 +5,9 @@ import {
   fileInfoType,
   filesInfoType,
 } from "../../../lib/filesInfo";
-import { Input, IconButton } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
 import { v4 as createUUID } from "uuid";
 import { resentFileArrayAtom } from "./main";
+import {BiAddToQueue} from "react-icons/bi"
 
 export default function Tools({ fileID }: { fileID: string }) {
   const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);
@@ -31,7 +30,7 @@ export default function Tools({ fileID }: { fileID: string }) {
   return (
     <section className="flex bg-blue-200 p-2">
       <div className="flex flex-1">
-        <Input
+        <input
           className="flex-1"
           id="filled-basic"
           defaultValue={
@@ -55,11 +54,7 @@ export default function Tools({ fileID }: { fileID: string }) {
         />
       </div>
       <div className="flex flex-none">
-        <IconButton
-          aria-label="問題を追加"
-          icon={<AddIcon />}
-          onClick={addQuiz}
-        />
+  <button onClick={addChoice}><BiAddToQueue/></button>
       </div>
     </section>
   );
