@@ -1,15 +1,21 @@
 "use client";
 import EditMain from "./main";
 import Tools from "./tools";
-import { v4 as getUUID } from "uuid";
+import { v4 as createUUID } from "uuid";
 import { useRecoilState } from "recoil";
 import { filesInfoState } from "../../../lib/filesInfoState";
 import { fileInfoType, filesInfoType } from "../../../@types/filesInfoType";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function EditHome(pageProps: {
   searchParams: { testId: string };
 }) {
-  const fileID: string = pageProps.searchParams.testId || `test-${getUUID()}`;
+  const router = useRouter();
+  const fileID: string = pageProps.searchParams.testId;
+  useEffect(() => {
+    if (!fileID) router.push("/edit?testID=test-" + createUUID());
+  }, []);
   const [filesInfo, setFilesInfo] =
     useRecoilState<filesInfoType>(filesInfoState);
   const fileInfo = filesInfo.files.find(
@@ -18,11 +24,15 @@ export default function EditHome(pageProps: {
   function setFileInfo(newFileInfo: fileInfoType) {
     setFilesInfo({
       ...filesInfo,
-      files: filesInfo.files.map((fileInfo) =>
-        fileInfo.content.quizexam["@_fileID"] === fileID
-          ? newFileInfo
-          : fileInfo
-      ),
+      files: filesInfo.files.find(
+        (fileInfo) => fileInfo.content.quizexam["@_fileID"] === fileID
+      )
+        ? filesInfo.files.map((fileInfo) =>
+            fileInfo.content.quizexam["@_fileID"] === fileID
+              ? newFileInfo
+              : fileInfo
+          )
+        : [...filesInfo.files, newFileInfo],
     });
   }
   return (

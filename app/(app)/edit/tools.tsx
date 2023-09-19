@@ -20,7 +20,7 @@ export default function Tools({
         quizexam: {
           ...fileInfo?.content.quizexam,
           quiz: [
-            ...fileInfo?.content?.quizexam?.quiz,
+            ...(fileInfo?.content?.quizexam?.quiz || []),
             {
               "@_quizID": createUUID(),
               "@_type": defaultQuizType,
