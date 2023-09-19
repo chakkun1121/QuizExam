@@ -10,6 +10,8 @@ import {
   quizSelect,
   quizType,
 } from "../../../@types/filesInfoType";
+import TextInput from "../_components/textInput";
+import IconButton from "../_components/iconButton";
 export const typeOptions = [
   { value: "standard", label: "標準" },
   { value: "hold", label: "穴埋め形式" },
@@ -29,11 +31,10 @@ export default function Quiz({
 }) {
   return (
     <QuizLayout mode="edit">
-      <input
+      <TextInput
         className="w-full"
         defaultValue={quiz?.problem?.["#text"]}
-        onChange={(e) => {
-          //何故か問題を編集するときだけエラーが出る
+        onChange={(e: { target: { value: any } }) => {
           setQuiz({
             ...quiz,
             problem: {
@@ -66,9 +67,9 @@ export default function Quiz({
         }}
         options={typeOptions}
       />
-      <button aria-label="問題を削除" onClick={deleteQuiz}>
+      <IconButton aria-label="問題を削除" onClick={deleteQuiz}>
         <RiDeleteBinFill />
-      </button>
+      </IconButton>
     </QuizLayout>
   );
 }

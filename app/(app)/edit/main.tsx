@@ -13,7 +13,7 @@ export default function EditMain({
     console.debug(fileInfo);
   }, [fileInfo]);
   return (
-    <>
+    <section className="mt-4">
       {fileInfo.content.quizexam.quiz.map((quiz: quizType) => {
         return (
           <Quiz
@@ -51,6 +51,6 @@ export default function EditMain({
           />
         );
       })}
-    </>
+    </section>
   );
 }

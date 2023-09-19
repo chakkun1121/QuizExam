@@ -28,6 +28,7 @@ export default function EditHome(pageProps: {
   return (
     <>
       <Tools fileInfo={fileInfo} setFileInfo={setFileInfo} />
+      <hr className="m-2 border-black border-y-2" />
       <EditMain fileInfo={fileInfo} setFileInfo={setFileInfo} />
     </>
   );

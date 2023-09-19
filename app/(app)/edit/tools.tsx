@@ -2,6 +2,8 @@
 import { fileInfoType } from "../../../@types/filesInfoType";
 import { v4 as createUUID } from "uuid";
 import { BiAddToQueue } from "react-icons/bi";
+import TextInput from "../_components/textInput";
+import IconButton from "../_components/iconButton";
 
 export default function Tools({
   fileInfo,
@@ -32,9 +34,9 @@ export default function Tools({
     });
   }
   return (
-    <section className="flex bg-blue-200 p-2">
+    <section className="flex bg-blue-300 p-2 m-2 mb-4 rounded">
       <div className="flex flex-1">
-        <input
+        <TextInput
           className="flex-1"
           id="filled-basic"
           defaultValue={fileInfo.name || "無題のテスト"}
@@ -48,9 +50,9 @@ export default function Tools({
         />
       </div>
       <div className="flex flex-none">
-        <button onClick={addSection}>
+        <IconButton onClick={addSection}>
           <BiAddToQueue />
-        </button>
+        </IconButton>
       </div>
     </section>
   );

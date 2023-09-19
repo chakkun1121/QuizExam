@@ -1,5 +1,6 @@
 "use client";
 import { answerType } from "../../../@types/filesInfoType";
+import TextInput from "../_components/textInput";
 
 export default function AnswerStandard({
   answer,
@@ -9,7 +10,7 @@ export default function AnswerStandard({
   setAnswer: (newAnswer: answerType) => void;
 }) {
   return (
-    <input
+    <TextInput
       type="text"
       className="w-full"
       id="answer"

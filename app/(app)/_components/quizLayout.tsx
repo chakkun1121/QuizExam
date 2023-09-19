@@ -17,7 +17,7 @@ export default function QuizLayout({
               <div className="flex-none">{Answer} </div>
             </div>
             {mode == "edit" ? (
-              <div className="m-1 flex-none md:w-80">{SelectType} </div>
+              <div className="m-1 flex-none md:w-40">{SelectType} </div>
             ) : (
               <></>
             )}

@@ -1,7 +1,9 @@
 "use client";
-import { AiFillDelete } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
+import { RiDeleteBinFill } from "react-icons/ri";
 import { answerType, choiceType } from "../../../@types/filesInfoType";
+import TextInput from "../_components/textInput";
+import IconButton from "../_components/iconButton";
 export default function AnswerChoices({
   answer,
   setAnswer,
@@ -35,10 +37,10 @@ export default function AnswerChoices({
           return (
             <div className="flex">
               <input
+                className="block flex-none m-2 "
                 type="radio"
                 key={"radio" + i}
                 value={i.toString()}
-                className="m-2 flex-auto"
                 name={quizID}
                 defaultChecked={content["@_answer"] === ("true" || true)}
                 onChange={() => {
@@ -57,7 +59,7 @@ export default function AnswerChoices({
                   });
                 }}
               />
-              <input
+              <TextInput
                 type="text"
                 className="flex-1"
                 placeholder={`選択肢${i + 1}`}
@@ -78,20 +80,20 @@ export default function AnswerChoices({
                 }}
                 autoComplete="off"
               />
-              <button
+              <IconButton
                 aria-label="選択肢を消去"
                 className="flex-none"
                 onClick={() => deleteChoice(i)}
               >
-                <AiFillDelete />
-              </button>
+                <RiDeleteBinFill />
+              </IconButton>
             </div>
           );
         })}
       </div>
-      <button aria-label="選択肢を追加" onClick={addChoice}>
+      <IconButton aria-label="選択肢を追加" onClick={addChoice}>
         <BiAddToQueue />
-      </button>
+      </IconButton>
     </>
   );
 }

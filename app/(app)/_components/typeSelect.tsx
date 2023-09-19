@@ -1,4 +1,3 @@
-
 export default function TypeSelect({
   value,
   placeholder = "形式を選択",
@@ -17,6 +16,7 @@ export default function TypeSelect({
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        className="w-full bg-blue-200 rounded "
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
