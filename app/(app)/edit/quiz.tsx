@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Answer from "./answer";
 import { resentFileArrayAtom } from "./main";
 import { useRecoilState } from "recoil";
-import { IconButton } from "@chakra-ui/react";
 import { RiDeleteBinFill } from "react-icons/ri";
 import ProblemInput from "../_components/problemInput";
 import TypeSelect from "../_components/typeSelect";
@@ -69,9 +68,9 @@ export default function Quiz({
           onChange={handleChange}
           options={typeOptions}
         />
-        <IconButton aria-label="問題を削除" onClick={deleteQuiz}>
+        <button aria-label="問題を削除" onClick={deleteQuiz}>
           <RiDeleteBinFill />
-        </IconButton>
+        </button>
       </QuizLayout>
     </>
   );

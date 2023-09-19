@@ -1,13 +1,10 @@
 "use client";
 import { useRecoilState } from "recoil";
-import {
-  filesInfoState,
-  fileInfoType,
-  filesInfoType,
-} from "../../../lib/filesInfo";
+import { filesInfoState } from "../../../lib/filesInfoState";
+import { fileInfoType, filesInfoType } from "../../../@types/filesInfoType";
 import { v4 as createUUID } from "uuid";
 import { resentFileArrayAtom } from "./main";
-import {BiAddToQueue} from "react-icons/bi"
+import { BiAddToQueue } from "react-icons/bi";
 
 export default function Tools({ fileID }: { fileID: string }) {
   const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);
@@ -54,7 +51,9 @@ export default function Tools({ fileID }: { fileID: string }) {
         />
       </div>
       <div className="flex flex-none">
-  <button onClick={addChoice}><BiAddToQueue/></button>
+        <button onClick={addChoice}>
+          <BiAddToQueue />
+        </button>
       </div>
     </section>
   );

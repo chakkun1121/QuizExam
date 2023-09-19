@@ -1,14 +1,10 @@
 "use client";
 import { useRecoilState } from "recoil";
-import {
-  filesInfoState,
-  fileInfoType,
-  filesInfoType,
-} from "../../../lib/filesInfo";
+import { filesInfoState } from "../../../lib/filesInfoState";
+import { fileInfoType, filesInfoType } from "../../../@types/filesInfoType";
 import { atom } from "recoil";
 import Quiz from "./quiz";
 import { useEffect } from "react";
-import { getFileInfoFromFile } from "../../../lib/localFile/getFileInfoFromFile";
 export const resentFileArrayAtom = atom<Array<Element>>({
   key: "resentFileArray",
   default: [],

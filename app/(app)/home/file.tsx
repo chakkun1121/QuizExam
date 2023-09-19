@@ -2,22 +2,28 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { fileInfoType, filesInfoState } from "../../../lib/filesInfo";
+import { fileInfoType, fileObjectType } from "../../../@types/filesInfoType";
 import { downloadFile } from "../../../lib/download";
-import { useRecoilState } from "recoil";
+import { objectToXml } from "../../../lib/objectToXml";
 
 export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
-  const [filesInfo] = useRecoilState(filesInfoState);
-  const savedPlaceJapanese = (() => {
-    switch (fileInfo.savedPlace) {
+  function getSavedPlaceJapanese(savedPlace: string) {
+    switch (savedPlace) {
       case "local":
         return "ローカル";
       case "cloud":
         return "クラウド";
       case "GoogleDrive":
         return "GoogleDrive";
+      default:
+        return "";
     }
-  })();
+  }
+  const fileContent: fileObjectType = fileInfo.content;
+  function download(fileInfo: fileInfoType) {
+    const stringFile: string = objectToXml(fileInfo.content);
+    downloadFile({ name:fileInfo.name, content:stringFile});
+  }
   return (
     <div className="m-2 flex-none rounded bg-blue-400 p-2">
       <div className="flex items-center">
@@ -26,7 +32,7 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
             width={48}
             height={48}
             src={`/icons/${fileInfo.savedPlace}.png`}
-            alt={`${savedPlaceJapanese}ファイル`}
+            alt={`${getSavedPlaceJapanese(fileInfo.savedPlace)}ファイル`}
           />
         </div>
         <div className="max-w-full flex-auto  truncate text-4xl">
@@ -36,21 +42,30 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
       <div className="flex">
         <div className="flex-none">
           <p>
-            作成日:{new Date(fileInfo.createdDate).toLocaleDateString("ja-JP")}
+            作成日:
+            {new Date(fileContent.quizexam["@_createdDate"]).toLocaleDateString(
+              "ja-JP"
+            )}
           </p>
           <p>
             最終編集日:
-            {new Date(fileInfo.lastUpdatedDate).toLocaleDateString("ja-JP")}
+            {new Date(
+              fileContent.quizexam["@_lastUpdatedDate"]
+            ).toLocaleDateString("ja-JP")}
           </p>
         </div>
         <div className="flex">
-          <LinkButton href={`/edit?testId=${fileInfo.ID}`}>編集</LinkButton>
-          <LinkButton href={`/solve?testId=${fileInfo.ID}`}>
+          <LinkButton href={`/edit?testId=${fileContent.quizexam["@_fileID"]}`}>
+            編集
+          </LinkButton>
+          <LinkButton
+            href={`/solve?testId=${fileContent.quizexam["@_fileID"]}`}
+          >
             回答する
           </LinkButton>
           <button
-            onClick={() => downloadFile(fileInfo.ID, filesInfo)}
-            className="m-2 rounded border border-black bg-blue-600 p-2 text-white"
+            onClick={() => download(fileInfo)}
+            className="m-2 rounded border border-black bg-blue-600 p-2 text-white text-L"
           >
             ダウンロード
           </button>
@@ -62,7 +77,7 @@ export default function File({ fileInfo }: { fileInfo: fileInfoType }) {
 function LinkButton({ href, children }: { href: string; children: string }) {
   return (
     <div className="m-2 rounded border border-black bg-blue-600 p-2">
-      <Link href={href} className="text-white">
+      <Link href={href} className="text-white no-underline">
         {children}
       </Link>
     </div>

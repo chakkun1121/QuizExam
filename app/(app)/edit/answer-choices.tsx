@@ -1,10 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getAnswerXML, resentFileArrayAtom } from "./main";
-import { IconButton, Input, Radio, RadioGroup, Stack } from "@chakra-ui/react";
 import { useRecoilState } from "recoil";
-import {AiFillDelete} from "react-icons/ai"
-import {BiAddToQueue} from "react-icons/bi"
+import { AiFillDelete } from "react-icons/ai";
+import { BiAddToQueue } from "react-icons/bi";
 
 export default function AnswerChoices({ index }: { index: number }) {
   const answerXML = getAnswerXML(index);
@@ -80,30 +79,31 @@ export default function AnswerChoices({ index }: { index: number }) {
                   value={i.toString()}
                   className="m-2 flex-auto"
                 ></Radio>
-                <Input
+                <input
+                  type="text"
                   className="flex-1"
-                  placeholder={`選択肢`}
+                  placeholder={`選択肢${i + 1}`}
                   value={content.innerHTML}
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     changeChoice(i, event)
                   }
                   autoComplete="off"
                 />
-                <IconButton
+                <button
                   aria-label="選択肢を消去"
                   className="flex-none"
                   onClick={() => deleteChoice(i)}
                 >
                   <AiFillDelete />
-                </IconButton>
+                </button>
               </div>
             );
           })}
         </Stack>
       </RadioGroup>
-      <IconButton aria-label="選択肢を追加" onClick={addChoice}>
+      <button aria-label="選択肢を追加" onClick={addChoice}>
         <BiAddToQueue />
-      </IconButton>
+      </button>
     </>
   );
 }

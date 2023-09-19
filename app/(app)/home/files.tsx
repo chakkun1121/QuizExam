@@ -2,48 +2,43 @@
 import Link from "next/link";
 import File from "./file";
 import { useRecoilState } from "recoil";
-import { filesInfoState, fileInfoType } from "../../../lib/filesInfo";
-import { getFileInfoFromFile } from "../../../lib/localFile/getFileInfoFromFile";
-import { showFilePicker } from "../../../lib/localFile/uploadFile";
+import { filesInfoState } from "../../../lib/filesInfoState";
+import { fileInfoType } from "../../../@types/filesInfoType";
 import LinkButton from "../../_components/linkButton";
-
+import { xmlToObject } from "../../../lib/xmlToObject";
+import { uploadFile } from "../../../lib/uploadFile";
 export default function Files() {
   const [filesInfo, setFilesInfo] = useRecoilState(filesInfoState);
-  async function uploadFile() {
-    const FileSystemFileHandle: FileSystemFileHandle = await showFilePicker();
-    if (!FileSystemFileHandle) return;
-    const file = await FileSystemFileHandle?.getFile();
-    const fileContent = await file.text();
-    const fileName = FileSystemFileHandle.name.replace(".quizexam.xml", "");
-    const fileInfo: fileInfoType = await getFileInfoFromFile(
-      fileContent,
-      fileName,
-      "local"
+  async function upload() {
+    const {
+      content = "" as string,
+      fileName = "" as string,
+    } = await uploadFile();
+    const fileData = xmlToObject(content);
+    console.log(fileData);
+    const fileInfo: fileInfoType = {
+      name: fileName,
+      content: fileData,
+      savedPlace: "local",
+    };
+    // filesInfo.filesに同じIDのファイルがあったら上書き、なかったら追加
+    const sameFileIndex = filesInfo.files.findIndex(
+      (file) =>
+        file.content.quizexam["@_fileID"] ===
+        fileInfo.content.quizexam["@_fileID"]
     );
-    useAddFileToFilesInfo(fileInfo);
-  }
-  function useAddFileToFilesInfo(newFileInfo: fileInfoType) {
-    // filesInfoの中にnewFileInfo.IDと同じIDを持つファイルがあれば、上書き、そうでなければ追加
-    // filesInfoの中にnewFileInfo.IDと同じIDを持つファイルがあるか判定
-    const isSameID = filesInfo.files.some((fileInfo: fileInfoType) => {
-      return fileInfo.ID === newFileInfo.ID;
-    });
-    // filesInfoの中にnewFileInfo.IDと同じIDを持つファイルがある場合
-    if (isSameID) {
-      // filesInfoの中にnewFileInfo.IDと同じIDを持つファイルを上書き
-      const newFilesInfo = filesInfo.files.map((fileInfo: fileInfoType) => {
-        if (fileInfo.ID === newFileInfo.ID) {
-          return newFileInfo;
-        } else {
-          return fileInfo;
-        }
+    if (sameFileIndex === -1) {
+      setFilesInfo({
+        files: [...filesInfo.files, fileInfo],
       });
-      setFilesInfo({ files: newFilesInfo });
-    }
-    // filesInfoの中にnewFileInfo.IDと同じIDを持つファイルがない場合
-    else {
-      // filesInfoにnewFileInfoを追加
-      setFilesInfo({ files: [...filesInfo.files, newFileInfo] });
+    } else {
+      setFilesInfo({
+        files: [
+          ...filesInfo.files.slice(0, sameFileIndex),
+          fileInfo,
+          ...filesInfo.files.slice(sameFileIndex + 1),
+        ],
+      });
     }
   }
   return (
@@ -53,7 +48,7 @@ export default function Files() {
         <LinkButton className="flex-none" href="/edit">
           新規作成
         </LinkButton>
-        <button className="flex-none" onClick={uploadFile}>
+        <button className="flex-none" onClick={upload}>
           ローカルファイルを開く
         </button>
       </div>
@@ -61,7 +56,12 @@ export default function Files() {
         {filesInfo ? (
           filesInfo.files.length ? (
             filesInfo.files.map((fileInfo: fileInfoType) => {
-              return <File fileInfo={fileInfo} key={fileInfo.ID} />;
+              return (
+                <File
+                  fileInfo={fileInfo}
+                  key={fileInfo.content.quizexam["@_fileID"]}
+                />
+              );
             })
           ) : (
             <p>

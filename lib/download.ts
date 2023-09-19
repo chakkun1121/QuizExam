@@ -1,25 +1,38 @@
 "use client";
 
-import { filesInfoType } from "./filesInfo";
-import { getFileInfoFromFile } from "./localFile/getFileInfoFromFile";
-import { getFileName } from "./localStorage/getFIleName";
-import { getFileFromFileID } from "./localStorage/localStorage";
+export async function downloadFile({
+  name,
+  content,
+  fileHandle,
+}: {
+  name: string;
+  content: string;
+  fileHandle?: FileSystemFileHandle;
+}) {
+  if (!name.endsWith(".quizexam.xml")) name += ".quizexam.xml";
+  if (window?.showSaveFilePicker) {
+    console.debug(fileHandle)
+    fileHandle ??= await window.showSaveFilePicker({
+      suggestedName: name,
+      types: [
+        {
+          description: "QuizExamファイル",
+          accept: { "application/xml": [".quizexam.xml"] },
+        },
+      ],
+    });
 
-export async function downloadFile(fileID: string, filesInfo: filesInfoType) {
-  const file: Element = getFileFromFileID(filesInfo, fileID);
-  const fileName: string = getFileName(filesInfo, fileID);
-  const fileContent: string = file.outerHTML;
-  const fileHandle = await window.showSaveFilePicker({
-    suggestedName: `${fileName}.quizexam.xml`,
-    types: [
-      {
-        description: "QuizExamファイル",
-        accept: { "application/xml": [".quizexam.xml"] },
-      },
-    ],
-  });
-  const writable = await fileHandle.createWritable();
-  await writable.write(fileContent);
-  await writable.close();
-  return;
+    const writable = await fileHandle?.createWritable();
+    await writable.write(content);
+    await writable.close();
+    return;
+  }
+  const blob = new Blob([content], { type: "application/xml" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  a.click();
+  URL.revokeObjectURL(url);
+  a.remove();
 }

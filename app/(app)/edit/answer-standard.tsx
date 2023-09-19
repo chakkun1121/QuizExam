@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { getAnswerXML, resentFileArrayAtom } from "./main";
-import { Input } from "@chakra-ui/react";
 import { useRecoilState } from "recoil";
 
 export default function AnswerStandard({ index }: { index: number }) {
@@ -9,7 +8,8 @@ export default function AnswerStandard({ index }: { index: number }) {
   const [recentFileArray, setRecentFileArray] =
     useRecoilState<Array<Element>>(resentFileArrayAtom);
   return (
-    <Input
+    <input
+      type="text"
       className="w-full"
       id="answer"
       placeholder="答え"
