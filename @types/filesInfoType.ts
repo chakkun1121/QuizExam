@@ -13,16 +13,25 @@ export interface fileObjectType {
     ["@_createdDate"]: string | Date;
     ["@_lastUpdatedDate"]: string | Date;
     ["@_fileID"]: string;
-    quiz?: {
-      ["@_quizID"]: string;
-      ["@_type"]: "standard" | "hold" | "choices" | "sorting";
-      problem?: {
-        ["#text"]: string;
-      };
-      answer: {
-        // まだ未完了
-        ["#text"]: string;
-      };
-    }[];
+    quiz?: quizType[];
   };
 }
+export interface quizType {
+  ["@_quizID"]: string;
+  ["@_type"]: quizSelect;
+  problem?: {
+    ["#text"]: string;
+  };
+  answer: answerType;
+}
+export interface answerType {
+  // まだ未完了
+  ["#text"]?: string;
+  choices?: { choice?: choiceType[] }; //多分こう
+}
+export interface choiceType {
+  ["#text"]: string;
+  ["@_answer"]?: "true" | "false" | boolean;
+}
+
+export type quizSelect = "standard" | "hold" | "choices" | "sorting" | null;

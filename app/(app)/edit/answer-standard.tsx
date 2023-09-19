@@ -1,37 +1,25 @@
 "use client";
-import { useState } from "react";
-import { getAnswerXML, resentFileArrayAtom } from "./main";
-import { useRecoilState } from "recoil";
+import { answerType } from "../../../@types/filesInfoType";
 
-export default function AnswerStandard({ index }: { index: number }) {
-  const [answerXML] = useState<Element>(getAnswerXML(index));
-  const [recentFileArray, setRecentFileArray] =
-    useRecoilState<Array<Element>>(resentFileArrayAtom);
+export default function AnswerStandard({
+  answer,
+  setAnswer,
+}: {
+  answer: answerType;
+  setAnswer: (newAnswer: answerType) => void;
+}) {
   return (
     <input
       type="text"
       className="w-full"
       id="answer"
       placeholder="答え"
-      defaultValue={answerXML?.innerHTML}
+      defaultValue={answer["#text"] || ""}
       autoComplete="off"
       onChange={(e) => {
-        setRecentFileArray(() => {
-          const answerXML: Element = new DOMParser().parseFromString(
-            `<answer>${e.target.value}</answer>`,
-            "text/xml"
-          ).documentElement;
-          const cashRecentFileArray = [...recentFileArray];
-          return cashRecentFileArray.map((quizXML: Element, i: number) => {
-            if (index == i) {
-              const cashQuizXML = quizXML.cloneNode(true) as Element;
-              cashQuizXML.getElementsByTagName("answer")[0].innerHTML =
-                answerXML.innerHTML;
-              return cashQuizXML;
-            } else {
-              return quizXML;
-            }
-          });
+        setAnswer({
+          ...answer, //念の為
+          "#text": e.target.value as string,
         });
       }}
     />

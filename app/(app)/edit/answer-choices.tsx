@@ -1,106 +1,94 @@
 "use client";
-import { useEffect, useState } from "react";
-import { getAnswerXML, resentFileArrayAtom } from "./main";
-import { useRecoilState } from "recoil";
 import { AiFillDelete } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
-
-export default function AnswerChoices({ index }: { index: number }) {
-  const answerXML = getAnswerXML(index);
-  const [_, setRecentFileArray] =
-    useRecoilState<Array<Element>>(resentFileArrayAtom);
-  const [choices, setChoices] = useState<Array<Element>>(
-    Array.from(answerXML?.getElementsByTagName("choice") || [])
-  );
-
-  const [answerIndex, setAnswerIndex] = useState<string>(
-    choices
-      .findIndex((choice) => choice.getAttribute("answer") === "true")
-      ?.toString() || "0"
-  );
-  function changeChoice(i: number, event: React.ChangeEvent<HTMLInputElement>) {
-    setChoices((choices) => {
-      const newChoices = [...choices];
-      newChoices[i].innerHTML = event.target.value;
-      return newChoices;
-    });
-  }
+import { answerType, choiceType } from "../../../@types/filesInfoType";
+export default function AnswerChoices({
+  answer,
+  setAnswer,
+  quizID,
+}: {
+  answer: answerType;
+  setAnswer: (newAnswer: answerType) => void;
+  quizID: string;
+}) {
   function addChoice() {
-    setChoices((choices) => {
-      const newChoices = [...choices];
-      const newChoice = new Document().createElement("choice");
-      newChoice.innerHTML = "";
-      newChoices.push(newChoice);
-      return newChoices;
+    setAnswer({
+      ...answer,
+      choices: { choice: [...(answer.choices?.choice || []), { "#text": "" }] },
     });
   }
   function deleteChoice(i: number) {
-    setChoices((choices) => {
-      const newChoices = [...choices];
-      newChoices.splice(i, 1);
-      return newChoices;
+    setAnswer({
+      ...answer,
+      choices: {
+        choice: [
+          ...answer.choices.choice.slice(0, i),
+          ...answer.choices.choice.slice(i + 1),
+        ],
+      },
     });
   }
-  useEffect(() => {
-    console.log(answerIndex, choices);
-    setRecentFileArray((recentFileArray) => {
-      const answerXML: Element = new DOMParser().parseFromString(
-        `<answer><choices>${choices
-          .map((choice, i: number) => {
-            return `<choice ${
-              i == Number(answerIndex) ? `answer="true"` : ""
-            }>${choice.innerHTML}</choice>`;
-          })
-          .join("")}</choices></answer>`,
-        "text/xml"
-      ).documentElement;
-      const cashRecentFileArray = [...recentFileArray];
-      return cashRecentFileArray.map((quizXML: Element, i: number) => {
-        if (index == i) {
-          const cashQuizXML = quizXML.cloneNode(true) as Element;
-          cashQuizXML.getElementsByTagName("answer")[0].innerHTML =
-            answerXML.innerHTML;
-          return cashQuizXML;
-        } else {
-          return quizXML;
-        }
-      });
-    });
-  }, [choices, answerIndex]);
   return (
     <>
-      <RadioGroup value={answerIndex || "0"} onChange={setAnswerIndex}>
-        <Stack>
-          {choices.map((content: Element, i) => {
-            return (
-              <div className="flex">
-                <Radio
-                  key={"radio" + i}
-                  value={i.toString()}
-                  className="m-2 flex-auto"
-                ></Radio>
-                <input
-                  type="text"
-                  className="flex-1"
-                  placeholder={`選択肢${i + 1}`}
-                  value={content.innerHTML}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                    changeChoice(i, event)
-                  }
-                  autoComplete="off"
-                />
-                <button
-                  aria-label="選択肢を消去"
-                  className="flex-none"
-                  onClick={() => deleteChoice(i)}
-                >
-                  <AiFillDelete />
-                </button>
-              </div>
-            );
-          })}
-        </Stack>
-      </RadioGroup>
+      <div>
+        {answer.choices?.choice.map((content: choiceType, i: number) => {
+          return (
+            <div className="flex">
+              <input
+                type="radio"
+                key={"radio" + i}
+                value={i.toString()}
+                className="m-2 flex-auto"
+                name={quizID}
+                defaultChecked={content["@_answer"] === ("true" || true)}
+                onChange={() => {
+                  setAnswer({
+                    ...answer,
+                    choices: {
+                      choice: answer.choices.choice.map(
+                        (choice: choiceType, j: number) => {
+                          return {
+                            ...choice,
+                            "@_answer": i === j ? "true" : "false",
+                          };
+                        }
+                      ),
+                    },
+                  });
+                }}
+              />
+              <input
+                type="text"
+                className="flex-1"
+                placeholder={`選択肢${i + 1}`}
+                value={content["#text"] || ""}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setAnswer({
+                    ...answer,
+                    choices: {
+                      choice: [
+                        ...answer.choices.choice.slice(0, i),
+                        {
+                          "#text": e.target.value as string,
+                        },
+                        ...answer.choices.choice.slice(i + 1),
+                      ],
+                    },
+                  });
+                }}
+                autoComplete="off"
+              />
+              <button
+                aria-label="選択肢を消去"
+                className="flex-none"
+                onClick={() => deleteChoice(i)}
+              >
+                <AiFillDelete />
+              </button>
+            </div>
+          );
+        })}
+      </div>
       <button aria-label="選択肢を追加" onClick={addChoice}>
         <BiAddToQueue />
       </button>
