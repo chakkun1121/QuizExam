@@ -4,7 +4,7 @@ import { recoilPersist } from "recoil-persist";
 import { filesInfoType } from "../@types/filesInfoType";
 const { persistAtom } = recoilPersist({
   key: "filesInfo",
-  storage: window?.localStorage,
+  storage: typeof window === "undefined" ? undefined : localStorage,
 });
 export const filesInfoState = atom<filesInfoType>({
   key: "filesInfo",
