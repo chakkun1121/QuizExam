@@ -39,7 +39,9 @@ export default function Tools({
         <TextInput
           className="flex-1"
           id="filled-basic"
-          defaultValue={fileInfo.name || "無題のテスト"}
+          defaultValue={
+            fileInfo.name.replace(/\.quizexam\.xml$/, "") || "無題のテスト"
+          }
           placeholder="テスト名を入力"
           onChange={(e) => {
             setFileInfo({
