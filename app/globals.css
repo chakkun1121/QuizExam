@@ -1,3 +1,6 @@
+body {
+  font-family: "noto-sans-jp", "noto-sans";
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,7 +21,7 @@ button {
 }
 a,
 a:visited {
-  @apply text-L text-sea-800 underline;
+  @apply text-L text-sea-800;
 }
 pre {
   @apply m-8 overflow-x-auto rounded-md border border-gray-300 bg-gray-100 p-2;
@@ -49,4 +52,7 @@ article h6 {
 }
 article p {
   @apply pl-6;
+}
+article ol > li {
+  @apply list-decimal;
 }

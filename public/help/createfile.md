@@ -1,4 +1,6 @@
-# QuizExam ファイルの作成の仕方
+---
+title: QuizExam ファイルの作成の仕方
+---
 
 1. QuizExam アプリの[ホーム画面](https://quizexam.vercel.app/home?from=helppage)を開きます。
 2. 新規作成ボタンを押します。
