@@ -1,48 +1,29 @@
 "use client";
 
-import { atom, useRecoilState } from "recoil";
-import { filesInfoState } from "../../../lib/filesInfoState";
-import { fileInfoType } from "../../../@types/filesInfoType";
-import Quiz from "./quiz";
-import { useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { fileInfoType, quizType } from "../../../@types/filesInfoType";
+import Quiz from "../_components/quiz";
+import { notFound } from "next/navigation";
 
-const resentFileArrayAtom = atom<Array<Element>>({
-  key: "resentFileArray",
-  default: [],
-});
-export const isShowAnswerAtom = atom<boolean>({
-  key: "isShowAnswer",
-  default: false,
-});
-export const currentAnswerAtom = atom<Object>({
-  key: "currentAnswer",
-  default: {},
-});
-export default function SolveMain({ fileID }: { fileID: string }) {
-  const [filesInfo] = useRecoilState(filesInfoState);
-  const [isShowAnswer, setIsShowAnswer] = useRecoilState(isShowAnswerAtom);
-  useEffect(() => {
-    setIsShowAnswer(false);
-  }, []);
-  const resentFileXML = new DOMParser().parseFromString(
-    (
-      filesInfo?.files?.find(
-        (fileInfo: fileInfoType) => fileInfo.ID === fileID
-      ) || {}
-    ).content || "",
-    "text/xml"
-  );
-  const [resentFileArray, setRecentFileArray] =
-    useRecoilState<Array<Element>>(resentFileArrayAtom);
-  useEffect(() => {
-    setRecentFileArray(Array.from(resentFileXML.getElementsByTagName("quiz")));
-  }, []);
+export default function SolveMain({ fileInfo }: { fileInfo: fileInfoType }) {
+  const [isShowAnswer, setIsShowAnswer] = useState(false);
+  const [currentAnswer, setCurrentAnswer] = useState([]);
+  console.debug(fileInfo);
+  if (!fileInfo) notFound();
   return (
     <>
       <div>
-        {resentFileArray.map((_, index: number) => {
-          return <Quiz index={index} key={index} />;
+        {fileInfo.content.quizexam.quiz.map((quiz: quizType) => {
+          return (
+            <Quiz
+              quiz={quiz}
+              key={quiz["@_quizID"]}
+              mode="solve"
+              type={quiz["@_type"]}
+              isShowAnswer={isShowAnswer}
+            />
+          );
         })}
       </div>
       {!isShowAnswer ? (

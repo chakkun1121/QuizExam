@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { fileInfoType, quizType } from "../../../@types/filesInfoType";
-import Quiz from "./quiz";
+import Quiz from "../_components/quiz";
 export default function EditMain({
   fileInfo,
   setFileInfo,
@@ -14,9 +14,10 @@ export default function EditMain({
   }, [fileInfo]);
   return (
     <section className="mt-4">
-      {fileInfo.content.quizexam.quiz.map((quiz: quizType) => {
+      {fileInfo?.content?.quizexam?.quiz.map((quiz: quizType) => {
         return (
           <Quiz
+            mode="edit"
             key={quiz["@_quizID"]}
             type={quiz["@_type"]}
             quiz={quiz}

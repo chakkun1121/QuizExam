@@ -18,9 +18,9 @@ export default function Tools({
       ...fileInfo,
       content: {
         quizexam: {
-          ...fileInfo.content.quizexam,
+          ...fileInfo?.content.quizexam,
           quiz: [
-            ...fileInfo.content.quizexam.quiz,
+            ...fileInfo?.content?.quizexam?.quiz,
             {
               "@_quizID": createUUID(),
               "@_type": defaultQuizType,
@@ -40,7 +40,7 @@ export default function Tools({
           className="flex-1"
           id="filled-basic"
           defaultValue={
-            fileInfo.name.replace(/\.quizexam\.xml$/, "") || "無題のテスト"
+            fileInfo?.name?.replace(/\.quizexam\.xml$/, "") || "無題のテスト"
           }
           placeholder="テスト名を入力"
           onChange={(e) => {

@@ -1,17 +1,20 @@
-import { Metadata } from "next";
+"use client";
 import SolveMain from "./main";
-export const metadata: Metadata = {
-  title: "解答画面 | QuizExam | chakkun1121",
-  robots: "noindex",
-  alternates: { canonical: "/solve" },
-};
+import { useRecoilState } from "recoil";
+import { filesInfoType } from "../../../@types/filesInfoType";
+import { filesInfoState } from "../../../lib/filesInfoState";
+
 export default function SolveHome(pageProps: {
   searchParams: { testId: string };
 }) {
+  const [filesInfo] = useRecoilState<filesInfoType>(filesInfoState);
   const fileID: string = pageProps.searchParams.testId;
+  const fileInfo = filesInfo.files.find(
+    (fileInfo) => fileInfo.content.quizexam["@_fileID"] === fileID
+  );
   return (
     <>
-      <SolveMain fileID={fileID} />
+      <SolveMain fileInfo={fileInfo} />
     </>
   );
 }
